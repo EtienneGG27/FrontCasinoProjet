@@ -1,8 +1,0 @@
-<div class="roulette-container">
-  <div class="roulette" [ngClass]="{'spin': isSpinning}">
-    <div class="number" *ngFor="let number of numbers" [ngStyle]="{'transform': getRotation(number)}">
-      <div [ngClass]="{'red': isRed(number), 'black': !isRed(number), 'green': number === 0}">{{ number }}</div>
-    </div>
-  </div>
-  <button (click)="spin()">Spin</button>
-</div>

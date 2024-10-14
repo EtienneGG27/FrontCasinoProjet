@@ -34,6 +34,10 @@ export class HomeComponent implements OnInit {
   }
 
   onGameChoice(game : GameModel) {
-    this.router.navigate(['/game', game.nom]);
+    if (game.nom === "BlackJack") {
+      this.router.navigate(['/blackjack'],  { state: { player: this.player } });
+    }
+    if (game.nom === "roulette") {
+      this.router.navigate(['/roulette'], { state: { player: this.player } });}
   }
 }
