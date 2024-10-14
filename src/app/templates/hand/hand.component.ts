@@ -20,18 +20,14 @@ export class HandComponent implements OnInit {
   chosenCard!: CardModel;
 
 
-  availableCards: CardModel[] = [
-    { suit: 'C', rank: '2', imagePath: './assets/cards/2-C.png' },
 
-  ];
 
   ngOnInit() {
-    this.drawRandomCard();
+    this.cards = [
+      { suit: 'C', rank: '2', imagePath: './assets/cards/2-C.png' },
+      { suit: 'C', rank: '3', imagePath: './assets/cards/3-C.png' },
+    ];
   }
 
-  drawRandomCard() {
-    const randomIndex = Math.floor(Math.random() * this.availableCards.length);
-    this.chosenCard = this.availableCards[randomIndex]; // Choisit une carte au hasard
-    console.log(`Carte choisie: ${this.chosenCard.rank} de ${this.chosenCard.suit}`);
-  }
+
 }

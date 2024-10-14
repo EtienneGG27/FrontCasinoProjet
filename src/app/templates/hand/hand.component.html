@@ -1,4 +1,7 @@
-<div>
-  <h2>Carte choisie au hasard</h2>
-  <app-card [card]="chosenCard"></app-card> <!-- Affiche la carte choisie -->
-</div>
+<h2>Toutes les cartes du paquet</h2>
+<ng-container *ngIf="cards">
+  <div class="card-container">
+    <app-card class="card" [card]="cards[0]"></app-card> <!-- Première carte -->
+    <app-card class="card" [card]="cards[1]"></app-card> <!-- Deuxième carte -->
+  </div>
+</ng-container>
