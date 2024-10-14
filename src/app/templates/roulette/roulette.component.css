@@ -1,0 +1,45 @@
+.roulette-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 50px;
+}
+
+.roulette {
+  width: 300px; /* Augmentez la taille de la roulette */
+  height: 300px;
+  border: 16px solid #000;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.spin {
+  transform: rotate(360deg);
+}
+
+.number {
+  position: absolute;
+  width: 30px; /* Ajustez la taille des numéros */
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+  color: white; /* Couleur du texte */
+}
+
+.red {
+  background-color: red;
+}
+
+.black {
+  background-color: black;
+}
+
+.green {
+  background-color: green;
+}

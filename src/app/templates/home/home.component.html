@@ -1,1 +1,20 @@
-<p>home works!</p>
+<div class="gamesChoice">
+  <div class="profile-info">
+    <h4>Tokens : {{player.token}}</h4>
+    <h4>Mon profil : {{player.name}}</h4>
+  </div>
+
+  <h2>Choisissez un jeu</h2>
+  <div class="gamesBlock" *ngFor="let game of games">
+    <div class="gameBlock">
+      <h3>{{game.nom}}</h3>
+      <p>{{game.description}}</p>
+      <img src="{{game.image}}" alt="image{{game.nom}}" style="width: 200px; height: 200px;">
+      <button (click)="onGameChoice(game)">Jouer</button>
+    </div>
+  </div>
+
+  <div *ngIf="games.length === 0">
+    <p>Aucun jeu disponible</p>
+  </div>
+</div>

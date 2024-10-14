@@ -37,6 +37,7 @@ export class ConnexionComponent implements OnInit {
     onSubmit(): void {
       if (this.username === 'admin' && this.password === 'admin') {
         this.isConnected = true
+        this.router.navigate(['/homePage']);
       }
       else {
         this.isConnected = false;
@@ -46,7 +47,6 @@ export class ConnexionComponent implements OnInit {
 
     onLogout(): void {
       this.isConnected = false;
-      this.router.navigate(['/homePage']);
     }
 
     onRegister(): void {
