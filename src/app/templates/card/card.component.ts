@@ -18,4 +18,6 @@ export class CardComponent {
   getSuit() {
     return this.card.imagePath.split('-')[1].split('.')[0]; // Obtient la couleur à partir du chemin
   }
+
+
 }

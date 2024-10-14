@@ -16,7 +16,7 @@ export class HandModel {
     this.cards.push(card);
   }
 
-  loadHand(cards: CardModel[]) {
+  loadCards(cards: CardModel[]) {
     this.cards = cards;
   }
 
