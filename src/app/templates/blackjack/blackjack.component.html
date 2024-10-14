@@ -11,9 +11,11 @@
   </div>
   <div class="playerHand">
     <app-hand [hand]="playerHand"></app-hand>
+    <p>Afficher {{playerHand.countpointHand()}}</p>
   </div>
   <div class="dealerHand">
     <app-hand [hand]="dealerHand"></app-hand>
+    <p>{{dealerHand.countpointHand()}}</p>
   </div>
   <div class="buttons">
     <button class="btn" id="hit">Hit</button>
@@ -35,7 +37,7 @@
   <div class="betConfirm"></div>
   <div class="betConfirmButtons">
     <button class="btn" id="confirm">Confirm</button>
-    <button class="btn" id="cancel">Cancel</button>
+    <button class="btn" id="cancel" (click)="cancelBet()">Cancel</button>
   </div>
 </div>
 

@@ -19,27 +19,30 @@ import {HandModel} from '../Model/hand.model';
 })
 
 export class HandComponent implements OnInit {
-  @Input() hand!: HandModel[];
 
-  cards: CardModel[] = [];
+  @Input() hand!: HandModel;
+
 
   showCard: boolean = true;
   backCard = 'assets/cards/BACK.png';
 
   ngOnInit() {
-    this.cards = this.loadCards(); // Chargez les cartes initiales
+    this.loadCards();
   }
 
-  loadCards(): CardModel[] {  // Correction du type de retour : CardModel[]
-    return [
-      { suit: 'C', rank: '2', imagePath: 'assets/cards/2-C.png' },
-      { suit: 'D', rank: '3', imagePath: 'assets/cards/3-D.png' }
-    ];
+  loadCards() {  // Correction du type de retour : CardModel[]
+    let cardsHand = [{suit: 'C', rank: '2', imagePath: 'assets/cards/2-C.png'},
+      {suit: 'D', rank: '3', imagePath: 'assets/cards/3-D.png'},]
+    this.hand.loadHand(cardsHand);
   }
 
   addCard() {
     // Ajoute une nouvelle carte aléatoire (à adapter selon vos besoins)
-    this.cards.push({ suit: 'S', rank: 'A', imagePath: 'assets/cards/A-S.png' });
+    this.hand.addCard({ suit: 'S', rank: 'A', imagePath: 'assets/cards/A-S.png' });
   }
+
+
+
+
 
 }

@@ -1,5 +1,5 @@
-export interface CardModel {
-  rank: string;
-  suit: string;
-  imagePath: string;
+export class CardModel {
+
+  constructor(public rank: string, public suit: string, public imagePath: string) {}
+
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CardComponent} from '../card/card.component';
 import {HandComponent} from '../hand/hand.component';
 import {HandModel} from '../Model/hand.model';
@@ -14,22 +14,31 @@ import {HandModel} from '../Model/hand.model';
   styleUrl: './blackjack.component.css'
 })
 
-
-
-
 export class BlackjackComponent implements OnInit{
 
+
   player: any;
+  playerHand!: HandModel
+  dealerHand!: HandModel
 
   betAmount: number = 0;
-
-  playerHand: HandModel[] = [];
-  dealerHand: HandModel[] = [];
 
   constructor() {}
 
   ngOnInit() {
     this.player = history.state.player;
+    this.playerHand = new HandModel(0, []);
+    this.dealerHand = new HandModel(0, []);
+    this.playerHand.loadHand([]);
+    this.dealerHand.loadHand([]);
+  }
+
+  countHandPlayer(){
+    this.playerHand.countpointHand()
+  }
+
+  countHandDealer(){
+    this.dealerHand.countpointHand()
   }
 
   bet(amout: number) {
@@ -40,6 +49,11 @@ export class BlackjackComponent implements OnInit{
       this.player.token -= amout;
       this.betAmount += amout;
     }
+  }
+
+  cancelBet(){
+    this.player.token += this.betAmount;
+    this.betAmount = 0;
   }
 
 }

@@ -1,6 +1,6 @@
-<ng-container *ngIf="cards.length > 0">
+<ng-container *ngIf="hand.cards.length > 0">
   <div class="card-container">
-    <ng-container *ngFor="let card of cards; let i = index">
+    <ng-container *ngFor="let card of hand.cards; let i = index">
       <ng-container *ngIf="showCard; else backCardTemplate">
         <app-card class="card" [style.left.px]="i * 30" [card]="card"></app-card>
       </ng-container>
