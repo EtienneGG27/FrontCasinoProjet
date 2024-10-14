@@ -1,0 +1,17 @@
+<div class="connexionClass">
+  <h2>Connexion</h2>
+    <div *ngIf="!isConnected">
+      <h2>Connexion</h2>
+      <form (submit)="onSubmit()">
+        <label for="username">username</label>
+        <input type="text" id="username" name="username" [(ngModel)]="username">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password">
+        <button type="submit">Connexion</button>
+      </form>
+    </div>
+    <div *ngIf="isConnected">
+      <h2>Vous êtes connecté</h2>
+      <button (click)="onLogout()">Déconnexion</button>
+    </div>
+</div>

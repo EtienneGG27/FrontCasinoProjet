@@ -1,0 +1,10 @@
+.connexionClass {
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+  padding: 50px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #f2f2f2;
+}
