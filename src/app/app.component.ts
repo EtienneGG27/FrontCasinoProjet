@@ -1,22 +1,26 @@
 import {Component, OnInit} from '@angular/core';
 import {ConnexionComponent} from './templates/connexion/connexion.component';
-import {CommonModule} from '@angular/common';
+import {HomeComponent} from './templates/home/home.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, ConnexionComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
 export class AppComponent implements OnInit {
 
-  connexion = new ConnexionComponent();
+  constructor(private router: Router) {}
+
+
+  connexion!: ConnexionComponent;
+  home!: HomeComponent;
+
+  title: string = 'angular-app';
 
   ngOnInit(): void {
-    this.connexion.isConnected = false;
+    this.connexion = new ConnexionComponent(this.router);
+    this.home = new HomeComponent(this.router);
   }
-
-
-
 }

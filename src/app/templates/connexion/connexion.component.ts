@@ -1,29 +1,58 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
+import {Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {NgIf, NgStyle} from '@angular/common';
 
 @Component({
   selector: 'app-connexion',
-  standalone: true,
+  templateUrl: './connexion.component.html',
+  styleUrl: './connexion.component.css',
   imports: [
     FormsModule,
     NgStyle,
     NgIf
   ],
-  templateUrl: './connexion.component.html',
-  styleUrl: './connexion.component.css'
+  standalone: true
 })
-export class ConnexionComponent {
+
+export class ConnexionComponent implements OnInit {
 
     username!: string;
     password!: string;
-    isConnected : boolean = true;
+    isConnected! : boolean;
+    retry!: boolean;
+    showRegisterForm!: boolean;
+    newUserName!: string;
+    newPassword!: string;
+
+    constructor(private router: Router) {}
+
+
+    ngOnInit(): void {
+      this.isConnected = false;
+      this.retry = false;
+    }
 
     onSubmit(): void {
-      console.log('Username: ' + this.username);
-      console.log('Password: ' + this.password);
+      if (this.username === 'admin' && this.password === 'admin') {
+        this.isConnected = true
+      }
+      else {
+        this.isConnected = false;
+        this.retry = true;
+      }
     }
+
     onLogout(): void {
       this.isConnected = false;
+      this.router.navigate(['/homePage']);
     }
+
+    onRegister(): void {
+      this.showRegisterForm = true;
+      this.username = this.newUserName;
+      this.password = this.newPassword;
+    }
+
 }
