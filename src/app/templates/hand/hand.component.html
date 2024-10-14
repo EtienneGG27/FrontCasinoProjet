@@ -1,7 +1,17 @@
-<h2>Toutes les cartes du paquet</h2>
-<ng-container *ngIf="cards">
+<ng-container *ngIf="cards.length > 0">
   <div class="card-container">
-    <app-card class="card" [card]="cards[0]"></app-card> <!-- Première carte -->
-    <app-card class="card" [card]="cards[1]"></app-card> <!-- Deuxième carte -->
+    <ng-container *ngFor="let card of cards; let i = index">
+      <ng-container *ngIf="showCard; else backCardTemplate">
+        <app-card class="card" [style.left.px]="i * 30" [card]="card"></app-card>
+      </ng-container>
+      <ng-template #backCardTemplate>
+        <img class="card" [style.left.px]="i * 30" [src]="backCard" alt="Dos de la carte">
+      </ng-template>
+    </ng-container>
+  </div>
+
+  <!-- Bouton pour ajouter une nouvelle carte -->
+  <div>
+    <button (click)="addCard()">Ajouter une carte</button>
   </div>
 </ng-container>

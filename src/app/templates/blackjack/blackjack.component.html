@@ -7,10 +7,14 @@
   </div>
   <div class="tokensDeck"></div>
   <div class="cardDeck">
-    <app-hand></app-hand>
+
   </div>
-  <div class="playerHand"></div>
-  <div class="dealerHand"></div>
+  <div class="playerHand">
+    <app-hand [hand]="playerHand"></app-hand>
+  </div>
+  <div class="dealerHand">
+    <app-hand [hand]="dealerHand"></app-hand>
+  </div>
   <div class="buttons">
     <button class="btn" id="hit">Hit</button>
     <button class="btn" id="stand">Stand</button>
@@ -22,11 +26,11 @@
   <div class="bet"></div>
   <div class="betInput"></div>
   <div class="betButtons">
-    <button class="btn" id="bet5">5</button>
-    <button class="btn" id="bet10">10</button>
-    <button class="btn" id="bet25">25</button>
-    <button class="btn" id="bet50">50</button>
-    <button class="btn" id="bet100">100</button>
+    <button class="btn" id="bet5" (click)="bet(5)">5</button>
+    <button class="btn" id="bet10" (click)="bet(10)">10</button>
+    <button class="btn" id="bet25" (click)="bet(25)">25</button>
+    <button class="btn" id="bet50" (click)="bet(50)">50</button>
+    <button class="btn" id="bet100" (click)="bet(100)">100</button>
   </div>
   <div class="betConfirm"></div>
   <div class="betConfirmButtons">

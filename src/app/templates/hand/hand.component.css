@@ -1,24 +1,22 @@
 .card-container {
-  position: relative; /* Pour permettre le positionnement absolu des cartes */
-  width: 120px;      /* Largeur du conteneur */
-  height: 150px;     /* Hauteur du conteneur */
-  margin: auto;      /* Centrer le conteneur */
+  position: relative;
+  width: 100%;   /* Largeur dynamique pour accueillir toutes les cartes */
+  height: 180px;  /* Hauteur du conteneur */
+  margin: auto;
 }
 
 .card {
-  position: absolute; /* Permet de superposer les cartes */
-  width: 100px;      /* Largeur de chaque carte */
-  height: 150px;     /* Hauteur de chaque carte */
-  transition: transform 0.3s; /* Animation de la transformation */
+  position: absolute;
+  width: 100px;
+  height: 150px;
+  transition: transform 0.3s;
 }
 
-.card:first-child {
-  z-index: 1; /* La première carte est au-dessus */
+/* Les cartes seront décalées horizontalement en fonction de leur index */
+.card {
+  z-index: 1;
 }
 
-.card:last-child {
-  z-index: 0; /* La seconde carte est en dessous */
-  transform: rotate(10deg); /* Incline la seconde carte */
-  top: 20px; /* Ajustez pour le positionnement vertical */
-  left: 10px; /* Ajustez pour le positionnement horizontal */
+.card:nth-child(n) {
+  left: calc(30px * (n - 1)); /* Décale chaque carte de 30px en fonction de son index */
 }

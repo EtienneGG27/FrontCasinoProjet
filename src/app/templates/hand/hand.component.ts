@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CardModel} from '../Model/card.model';
-import {NgClass, NgIf} from '@angular/common';
+import {NgClass, NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 import {CardComponent} from '../card/card.component';
+import {HandModel} from '../Model/hand.model';
 
 @Component({
   selector: 'app-hand',
@@ -9,25 +10,36 @@ import {CardComponent} from '../card/card.component';
   imports: [
     NgClass,
     NgIf,
-    CardComponent
+    CardComponent,
+    NgForOf,
+    NgOptimizedImage
   ],
   templateUrl: './hand.component.html',
-  styleUrl: './hand.component.css'
+  styleUrls: ['./hand.component.css']  // Correction ici (styleUrls au lieu de styleUrl)
 })
+
 export class HandComponent implements OnInit {
+  @Input() hand!: HandModel[];
 
   cards: CardModel[] = [];
-  chosenCard!: CardModel;
 
-
-
+  showCard: boolean = true;
+  backCard = 'assets/cards/BACK.png';
 
   ngOnInit() {
-    this.cards = [
-      { suit: 'C', rank: '2', imagePath: './assets/cards/2-C.png' },
-      { suit: 'C', rank: '3', imagePath: './assets/cards/3-C.png' },
+    this.cards = this.loadCards(); // Chargez les cartes initiales
+  }
+
+  loadCards(): CardModel[] {  // Correction du type de retour : CardModel[]
+    return [
+      { suit: 'C', rank: '2', imagePath: 'assets/cards/2-C.png' },
+      { suit: 'D', rank: '3', imagePath: 'assets/cards/3-D.png' }
     ];
   }
 
+  addCard() {
+    // Ajoute une nouvelle carte aléatoire (à adapter selon vos besoins)
+    this.cards.push({ suit: 'S', rank: 'A', imagePath: 'assets/cards/A-S.png' });
+  }
 
 }
