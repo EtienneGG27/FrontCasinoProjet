@@ -55,6 +55,7 @@ export class ConnexionComponent implements OnInit {
         this.showRegisterForm = true;
         this.username = this.newUserName;
         this.password = this.newPassword;
+        this.router.navigate(['/homePage']);
       }
     }
 
