@@ -4,6 +4,7 @@ import {HandComponent} from '../hand/hand.component';
 import {HandModel} from '../Model/hand.model';
 import {DeckModel} from '../Model/deck.model';
 import {CARDS} from '../Constants/card.constants';
+import {HandService} from '../Service/hand.service';
 
 @Component({
   selector: 'app-blackjack',
@@ -27,15 +28,15 @@ export class BlackjackComponent implements OnInit{
 
   deck!: DeckModel;
 
-  constructor() {}
+  constructor(private handService : HandService) {}
 
   ngOnInit() {
     this.player = history.state.player;
     this.playerHand = new HandModel(0, []);
     this.dealerHand = new HandModel(0, []);
-    this.deck.cards = CARDS;
-    this.playerHand.loadCards(this.deck.cards);
-    this.dealerHand.loadCards(this.deck.cards);
+    this.deck = new DeckModel(CARDS);
+    this.handService.loadHand(this.playerHand, this.deck.cards);
+    this.handService.loadHand(this.dealerHand, this.deck.cards);
   }
 
 
@@ -61,5 +62,4 @@ export class BlackjackComponent implements OnInit{
     this.player.token += this.betAmount;
     this.betAmount = 0;
   }
-
 }

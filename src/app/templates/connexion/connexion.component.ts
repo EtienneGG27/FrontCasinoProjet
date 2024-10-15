@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {NgIf, NgStyle} from '@angular/common';
+import {ConnexionService} from '../Service/connexion.service';
 
 @Component({
   selector: 'app-connexion',
@@ -25,8 +26,11 @@ export class ConnexionComponent implements OnInit {
     showRegisterForm!: boolean;
     newUserName!: string;
     newPassword!: string;
+    newEmail!: string;
 
-    constructor(private router: Router) {}
+    // connexionService = new ConnexionService()
+
+    constructor(private router: Router, private connexionService: ConnexionService) {}
 
 
     ngOnInit(): void {
@@ -35,8 +39,7 @@ export class ConnexionComponent implements OnInit {
     }
 
     onSubmit(): void {
-      if (this.username === 'admin' && this.password === 'admin') {
-        this.isConnected = true
+      if (this.connexionService.login(this.username, this.password)) {
         this.router.navigate(['/homePage']);
       }
       else {
@@ -50,9 +53,11 @@ export class ConnexionComponent implements OnInit {
     }
 
     onRegister(): void {
-      this.showRegisterForm = true;
-      this.username = this.newUserName;
-      this.password = this.newPassword;
+      if (this.connexionService.register(this.newUserName, this.newPassword, this.newEmail)){
+        this.showRegisterForm = true;
+        this.username = this.newUserName;
+        this.password = this.newPassword;
+      }
     }
 
 }

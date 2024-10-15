@@ -13,14 +13,6 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router) {}
 
-
-  connexion!: ConnexionComponent;
-  home!: HomeComponent;
-
-  title: string = 'angular-app';
-
   ngOnInit(): void {
-    this.connexion = new ConnexionComponent(this.router);
-    this.home = new HomeComponent(this.router);
   }
 }

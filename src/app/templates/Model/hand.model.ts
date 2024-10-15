@@ -12,18 +12,6 @@ export class HandModel {
     return points;
   }
 
-  addCard(card: CardModel) {
-    this.cards.push(card);
-  }
-
-  loadCards(cards: CardModel[]) {
-    this.cards = cards;
-  }
-
-  cleanHand() {
-    this.cards = [];
-  }
-
   private countpointCard(card: CardModel) {
     switch (card.rank) {
       case 'A':
