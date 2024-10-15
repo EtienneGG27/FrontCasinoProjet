@@ -30,7 +30,6 @@ export class ConnexionComponent implements OnInit {
 
     constructor(private router: Router, private connexionService: ConnexionService) {}
 
-
     ngOnInit(): void {
       this.isConnected = false;
       this.retry = false;

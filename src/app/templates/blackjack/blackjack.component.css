@@ -1,0 +1,286 @@
+
+
+.body {
+  background-color: darkgreen;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  text-align: center;
+}
+
+/* En-tête */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 2.5em;
+  color: #e74c3c;
+  background-color: #000; /* Fond noir */
+  padding: 10px 20px;
+  border-radius: 50px; /* Bordures arrondies pour créer un ovale */
+  display: inline-block;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Ombre pour un effet de profondeur */
+}
+
+/* Balance */
+.balance {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.balance h1 {
+  font-size: 1.5em;
+  color: #f39c12;
+  background-color: #333; /* Fond sombre pour ressembler à un coffre */
+  padding: 10px 20px;
+  border-radius: 20px; /* Bordures arrondies pour un effet de coffre */
+  display: inline-block;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Ombre pour un effet de profondeur */
+  border: 2px solid #f39c12; /* Bordure dorée */
+  position: relative;
+}
+
+.balance h1::before,
+.balance h1::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: #f39c12; /* Couleur dorée pour les "fermetures" du coffre */
+  border-radius: 50%;
+}
+
+.balance h1::before {
+  left: -20px;
+}
+
+.balance h1::after {
+  right: -20px;
+}
+
+
+
+/* Decks */
+.tokensDeck, .cardDeck {
+  margin-bottom: 20px;
+}
+
+/* Mains de jeu */
+.playerHand, .dealerHand {
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 400px;
+  margin: 0 auto;
+
+}
+
+.playerHand {
+  background-color: #34495e; /* Couleur de fond pour la main du joueur */
+  border: 2px solid black; /* Bordure pour la main du joueur */
+}
+
+.dealerHand {
+  background-color: #f39c12; /* Couleur de fond pour la main du dealer */
+  border: 2px solid black; /* Bordure pour la main du dealer */
+  position: relative;
+}
+
+.dealerHand::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background-color: black; /* Couleur de la "LED" */
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Ombre pour un effet de profondeur */
+  animation: blink 1s infinite; /* Animation de clignotement */
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Compte total de la main du joueur */
+.countHand {
+  font-size: 1.5em;
+  color: #ecf0f1; /* Couleur du texte */
+  margin: 0;
+  background-color: #2c3e50; /* Couleur de fond pour le compte total */
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombre pour un effet de profondeur */
+}
+
+.playerHand p, .dealerHand p {
+  font-size: 1.2em;
+  color: #ecf0f1; /* Couleur du texte */
+  margin: 0;
+}
+
+.dealerHand p {
+  font-family: 'Courier New', Courier, monospace; /* Police de type machine à écrire pour l'effet ordinateur */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Ombre pour un effet de profondeur */
+}
+
+
+
+
+
+/* Boutons */
+/* Bouton Ajouter une carte */
+.btnaddCard {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btnaddCard .btn {
+  background: linear-gradient(145deg, #2980b9, #6dd5fa); /* Dégradé pour un effet plus joli */
+  color: #ecf0f1;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 1em;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+}
+
+.btnaddCard .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  background-color: #3498db;
+}
+
+.btnaddCard .btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+
+.btnaddCard .btn:hover::before {
+  transform: scaleX(1);
+}
+
+.btnaddCard .btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s;
+}
+
+.btnaddCard .btn:hover::after {
+  transform: scaleX(1);
+}
+
+.buttons, .betConfirmButtons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background: linear-gradient(145deg, #2980b9, #6dd5fa); /* Dégradé pour un effet plus joli */
+  color: #ecf0f1;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Styles pour les boutons de mise */
+.betButtons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.betButtons .btn {
+  border: 4px solid #000; /* Bordure ronde noire */
+  border-radius: 50%; /* Boutons ronds */
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.betButtons .btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Couleurs spécifiques pour chaque bouton */
+#bet5 {
+  background-color: #ffd700; /* Doré */
+}
+
+#bet10 {
+  background-color: #ff4500; /* Orange */
+}
+
+#bet25 {
+  background-color: #ff69b4; /* Rose */
+}
+
+#bet50 {
+  background-color: #1e90ff; /* Bleu */
+}
+
+#bet100 {
+  background-color: #32cd32; /* Vert */
+}
+
+
+
+

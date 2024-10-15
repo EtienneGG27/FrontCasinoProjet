@@ -9,16 +9,17 @@
   <div class="cardDeck">
 
   </div>
-  <div class="playerHand">
-    <app-hand [hand]="playerHand"></app-hand>
-    <p>Afficher {{countHandPoint(playerHand)}}</p>
-  </div>
+
   <div class="dealerHand">
     <app-hand [hand]="dealerHand"></app-hand>
-    <p>{{countHandPoint(dealerHand)}}</p>
+    <div class="countHand">{{countHandPoint(dealerHand)}}</div>
   </div>
-  <div>
-    <button class="btn" id="addCard" (click)="addCard(playerHand)">Ajouter une carte</button>
+  <div class="playerHand">
+    <app-hand [hand]="playerHand"></app-hand>
+    <div class="countHand">{{countHandPoint(playerHand)}}</div>
+  </div>
+  <div class="btnaddCard">
+    <button  class="btn" id="addCard" (click)="addCard(playerHand)">Ajouter une carte</button>
   </div>
   <div class="buttons">
     <button class="btn" id="hit">Hit</button>
