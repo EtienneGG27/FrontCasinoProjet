@@ -20,7 +20,7 @@ import {HandService} from '../Service/hand.service';
   styleUrls: ['./hand.component.css']  // Correction ici (styleUrls au lieu de styleUrl)
 })
 
-export class HandComponent implements OnInit {
+export class HandComponent{
 
   @Input() hand!: HandModel;
 
@@ -29,14 +29,4 @@ export class HandComponent implements OnInit {
 
   constructor(private handService : HandService) {
   }
-
-  ngOnInit() {
-    //this.hand.cards.push({rank: '2', suit: '2', imagePath: "assets/cards/BACK.png"});
-  }
-
-  addCard() {
-    this.handService.addCard(this.hand);
-  }
-
-
 }

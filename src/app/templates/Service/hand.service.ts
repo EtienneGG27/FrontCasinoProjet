@@ -25,8 +25,33 @@ export class HandService {
     return randomCards;
   }
 
-  addCard(hand : HandModel) {
+  addCard(hand : HandModel, cards : CardModel[]) {
     // Ajoute une nouvelle carte aléatoire (à adapter selon vos besoins)
-    hand.cards.push(this.getRandomCards(1, CARDS)[0]);
+    hand.cards.push(this.getRandomCards(1, cards)[0]);
   }
+
+  countPointHand(hand : HandModel): number {
+    let points = 0;
+    for (let i = 0; i < hand.cards.length; i++) {
+      points += this.countpointCard(hand.cards[i]);
+    }
+    return points;
+  }
+
+  private countpointCard(card: CardModel) {
+    switch (card.rank) {
+      case 'A':
+        return 11;
+      case 'K':
+        return 10;
+      case 'Q':
+        return 10;
+      case 'J':
+        return 10;
+      default:
+        return parseInt(card.rank);
+    }
+  }
+
+
 }

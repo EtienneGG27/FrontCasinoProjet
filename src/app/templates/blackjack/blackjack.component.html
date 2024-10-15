@@ -11,11 +11,14 @@
   </div>
   <div class="playerHand">
     <app-hand [hand]="playerHand"></app-hand>
-    <p>Afficher {{playerHand.countpointHand()}}</p>
+    <p>Afficher {{countHandPoint(playerHand)}}</p>
   </div>
   <div class="dealerHand">
     <app-hand [hand]="dealerHand"></app-hand>
-    <p>{{dealerHand.countpointHand()}}</p>
+    <p>{{countHandPoint(dealerHand)}}</p>
+  </div>
+  <div>
+    <button class="btn" id="addCard" (click)="addCard(playerHand)">Ajouter une carte</button>
   </div>
   <div class="buttons">
     <button class="btn" id="hit">Hit</button>

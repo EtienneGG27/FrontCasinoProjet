@@ -28,8 +28,6 @@ export class ConnexionComponent implements OnInit {
     newPassword!: string;
     newEmail!: string;
 
-    // connexionService = new ConnexionService()
-
     constructor(private router: Router, private connexionService: ConnexionService) {}
 
 

@@ -1,5 +1,4 @@
 export class CardModel {
 
-  constructor(public rank: string, public suit: string, public imagePath: string) {}
-
+  constructor( public suit: string, public rank: string,public imagePath: string) {}
 }

@@ -40,14 +40,6 @@ export class BlackjackComponent implements OnInit{
   }
 
 
-  countHandPlayer(){
-    this.playerHand.countpointHand()
-  }
-
-  countHandDealer(){
-    this.dealerHand.countpointHand()
-  }
-
   bet(amout: number) {
     if (amout > this.player.token) {
       return;
@@ -61,5 +53,13 @@ export class BlackjackComponent implements OnInit{
   cancelBet(){
     this.player.token += this.betAmount;
     this.betAmount = 0;
+  }
+
+  addCard(hand: HandModel) {
+    this.handService.addCard(hand, this.deck.cards)
+  }
+
+  countHandPoint(hand: HandModel) {
+    return this.handService.countPointHand(hand);
   }
 }
