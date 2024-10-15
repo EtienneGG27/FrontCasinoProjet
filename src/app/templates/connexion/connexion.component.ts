@@ -55,12 +55,16 @@ export class ConnexionComponent implements OnInit {
     }
 
     onRegister(): void {
-      if (this.connexionService.register(this.newUserName, this.newPassword, this.newEmail)){
-        this.showRegisterForm = true;
-        this.username = this.newUserName;
-        this.password = this.newPassword;
-        this.router.navigate(['/homePage']);
+        this.connexionService.register(this.newUserName, this.newPassword, this.newEmail).subscribe(
+          (data) => {
+            if (data){
+              this.showRegisterForm = false;
+              this.username = this.newUserName;
+              this.password = this.newPassword;
+              this.router.navigate(['/homePage']);
+            }
+          }
+        );
       }
-    }
 
 }
