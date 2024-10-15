@@ -6,7 +6,7 @@
       <input type="text" id="username" name="username" [(ngModel)]="username">
       <label for="password">Mot de passe</label>
       <input type="password" id="password" name="password" [(ngModel)]="password">
-      <ng-container *ngIf="retry" [ngStyle]="{'color': 'red'}">
+      <ng-container *ngIf="retry" >
         <p>Identifiant ou mot de passe invalide</p>
       </ng-container>
       <button type="submit">Connexion</button>

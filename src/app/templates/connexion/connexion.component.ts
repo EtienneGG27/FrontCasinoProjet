@@ -36,13 +36,18 @@ export class ConnexionComponent implements OnInit {
     }
 
     onSubmit(): void {
-      if (this.connexionService.login(this.username, this.password)) {
-        this.router.navigate(['/homePage']);
-      }
-      else {
-        this.isConnected = false;
-        this.retry = true;
-      }
+      var response = false;
+      this.connexionService.login(this.username, this.password).subscribe(
+        (data) => {
+          if (data){
+            this.router.navigate(['/homePage']);
+          }
+          else {
+            this.isConnected = false;
+            this.retry = true;
+          }
+        }
+      );
     }
 
     onLogout(): void {

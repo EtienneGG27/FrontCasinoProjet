@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 
 @Injectable({
@@ -12,7 +12,8 @@ export class ConnexionService {
   private player = "http://localhost:8080/player"
 
   login(username: string, password: string) {
-    return this.http.post<boolean>(this.player + "/login", {username, password})
+    const options = new HttpParams().set('username', username).set('password', password)
+    return this.http.post<boolean>(this.player + "/login", options)
   }
 
   register(username:string, password:string, email:string){
