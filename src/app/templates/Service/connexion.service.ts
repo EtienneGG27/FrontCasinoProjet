@@ -12,11 +12,11 @@ export class ConnexionService {
   private player = "http://localhost:8080/player"
 
   login(username: string, password: string) {
-    const options = new HttpParams().set('username', username).set('password', password)
-    return this.http.post<boolean>(this.player + "/login", options)
+    return this.http.post<{playerId : number, username: string, tokenBalance:number}>(this.player + "/login", {username: username, password: password})
   }
 
   register(username:string, password:string, email:string){
     return this.http.post<boolean>(this.player+ "/register", {username: username, password: password, email: email})
   }
+
 }

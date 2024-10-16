@@ -1,7 +1,4 @@
-export interface PlayerModel {
-    name: string,
-    password: string,
-    email: string,
-    id: number,
-    token: number
+export class PlayerModel {
+  constructor(public name: string, public password: string, public token: number, public id: number) {
+  }
 }

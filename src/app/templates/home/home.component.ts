@@ -19,7 +19,7 @@ import {NONE_TYPE} from '@angular/compiler';
 export class HomeComponent implements OnInit {
 
   games: GameModel[] = []
-  player: PlayerModel = {name : "John", token : 1000, email : "ean@@gmail.com", id : 1, password : "1234"}
+  player!: PlayerModel;
 
   blackJack: GameModel = { nom: "BlackJack", description: "Description BlackJack", image: "https://play-lh.googleusercontent.com/009hpXoLRxULWBEF8VsHnNTjFrOQVFKfkQfIxZcDGWtVSZEU5mKtSJyy3Zv3pxVcZQ" };
   roulette : GameModel = { nom: "Roulette", description: "Description roulette", image:"https://as2.ftcdn.net/v2/jpg/01/58/48/65/1000_F_158486556_3f1vUzdTXKRfDcAUTnItuYeQZSul0Pjt.jpg"};
@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
       this.blackJack,
       this.roulette
     ]
+    this.player = history.state.player;
   }
 
   onGameChoice(game : GameModel) {

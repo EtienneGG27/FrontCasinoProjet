@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {CardModel} from '../Model/card.model';
 import {CARDS} from '../Constants/card.constants';
 import {HandModel} from '../Model/hand.model';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +10,9 @@ import {HandModel} from '../Model/hand.model';
 )
 export class HandService {
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
+
+  private player = "http://localhost:8080/hand"
 
   loadHand(hand : HandModel, cardsCARDS : CardModel[]) {  // Correction du type de retour : CardModel[]
     hand.cards = this.getRandomCards(2, cardsCARDS);

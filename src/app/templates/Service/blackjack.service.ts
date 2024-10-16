@@ -8,7 +8,9 @@ export class BlackjackService {
 
   constructor(private http: HttpClient) {}
 
-  private blackjack = "http://localhost:8080/blackjack"
+  private blackjack = "http://localhost:8080/game"
+
+
 
   getCard(){
     return this.http.get(this.blackjack + "/card")

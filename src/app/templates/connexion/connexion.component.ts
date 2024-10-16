@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {NgIf, NgStyle} from '@angular/common';
 import {ConnexionService} from '../Service/connexion.service';
+import {PlayerModel} from '../Model/player.model';
 
 @Component({
   selector: 'app-connexion',
@@ -18,6 +19,7 @@ import {ConnexionService} from '../Service/connexion.service';
 })
 
 export class ConnexionComponent implements OnInit {
+
 
     username!: string;
     password!: string;
@@ -35,20 +37,20 @@ export class ConnexionComponent implements OnInit {
       this.retry = false;
     }
 
-    onSubmit(): void {
-      var response = false;
-      this.connexionService.login(this.username, this.password).subscribe(
-        (data) => {
-          if (data){
-            this.router.navigate(['/homePage']);
-          }
-          else {
-            this.isConnected = false;
-            this.retry = true;
-          }
+  onSubmit(): void {
+    this.connexionService.login(this.username, this.password).subscribe(
+      (data : {playerId : number, username: string, tokenBalance:number}) => {
+        let player;
+        if (data) {
+          this.isConnected = true;
+          player = new PlayerModel(data.username, this.password, data.tokenBalance, data.playerId);
+          this.router.navigate(['/homePage'], {state: {player: player}});
+        } else {
+          this.retry = true;
         }
-      );
-    }
+      }
+    );
+  }
 
     onLogout(): void {
       this.isConnected = false;
