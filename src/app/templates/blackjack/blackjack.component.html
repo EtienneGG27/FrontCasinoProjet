@@ -4,6 +4,7 @@
   </div>
   <div class="balance">
     <h1>Balance : {{player.token}}</h1>
+    <h1>Bet amount : {{betAmount}}</h1>
   </div>
   <div class="tokensDeck"></div>
   <div class="cardDeck">
@@ -40,7 +41,7 @@
   </div>
   <div class="betConfirm"></div>
   <div class="betConfirmButtons">
-    <button class="btn" id="confirm">Confirm</button>
+    <button class="btn" id="confirm" (click)="startGame()">Confirm</button>
     <button class="btn" id="cancel" (click)="cancelBet()">Cancel</button>
   </div>
 </div>

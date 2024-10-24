@@ -5,6 +5,7 @@ import {HandModel} from '../Model/hand.model';
 import {DeckModel} from '../Model/deck.model';
 import {CARDS} from '../Constants/card.constants';
 import {HandService} from '../Service/hand.service';
+import {BlackjackService} from '../Service/blackjack.service';
 
 @Component({
   selector: 'app-blackjack',
@@ -17,7 +18,7 @@ import {HandService} from '../Service/hand.service';
   styleUrl: './blackjack.component.css'
 })
 
-export class BlackjackComponent implements OnInit{
+export class BlackjackComponent implements OnInit {
 
 
   player: any;
@@ -28,7 +29,8 @@ export class BlackjackComponent implements OnInit{
 
   deck!: DeckModel;
 
-  constructor(private handService : HandService) {}
+  constructor(private handService: HandService, private blackjackService: BlackjackService) {
+  }
 
   ngOnInit() {
     this.player = history.state.player;
@@ -43,14 +45,13 @@ export class BlackjackComponent implements OnInit{
   bet(amout: number) {
     if (amout > this.player.token) {
       return;
-    }
-    else{
+    } else {
       this.player.token -= amout;
       this.betAmount += amout;
     }
   }
 
-  cancelBet(){
+  cancelBet() {
     this.player.token += this.betAmount;
     this.betAmount = 0;
   }
@@ -61,5 +62,15 @@ export class BlackjackComponent implements OnInit{
 
   countHandPoint(hand: HandModel) {
     return this.handService.countPointHand(hand);
+  }
+
+  startGame() {
+    this.blackjackService.createGame(this.player.idPlayer, this.betAmount).subscribe(
+      (data) => {
+        this.playerHand.idPlayer = data.idGame;
+      }
+    )
+        this.addCard(this.playerHand);
+
   }
 }

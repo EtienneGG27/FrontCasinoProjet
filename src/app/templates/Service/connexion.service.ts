@@ -16,7 +16,7 @@ export class ConnexionService {
   }
 
   register(username:string, password:string, email:string){
-    return this.http.post<boolean>(this.player+ "/register", {username: username, password: password, email: email})
+    return this.http.post<string>(this.player+ "/register", {username: username, password: password, email: email})
   }
 
 }
