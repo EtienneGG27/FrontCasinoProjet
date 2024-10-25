@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {map} from 'rxjs';
+import {map, Observable} from 'rxjs';
+import {GameModel} from '../Model/game.model';
 
 @Injectable({
   providedIn: "root",
@@ -11,11 +12,15 @@ export class BlackjackService {
 
   private blackjack = "http://localhost:8080/game"
 
-  createGame( idPlayer: number, betAmout: number){
-    return this.http.post<any>(this.blackjack + "/create", {playerId: 2, betAmount: betAmout});
+  createGame(idPlayer: number, betAmout: number) : Observable<GameModel>{
+    return this.http.post<GameModel>(this.blackjack + "/create", {playerId: idPlayer, betAmount: betAmout});
   }
 
-  getCard(){
-    return this.http.get(this.blackjack + "/card")
+  getCard(gameId : number, betId : number) : Observable<GameModel>{
+    return this.http.post<GameModel>(this.blackjack + "/hit", {gameId: gameId, betId: betId});
   }
+
+
+
+
 }

@@ -5,16 +5,18 @@
   </div>
 
   <h2>Choisissez un jeu</h2>
-  <div class="gamesBlock" *ngFor="let game of games">
+  <div class="gamesBlock">
     <div class="gameBlock">
-      <h3>{{game.nom}}</h3>
-      <p>{{game.description}}</p>
-      <img src="{{game.image}}" alt="image{{game.nom}}" style="width: 200px; height: 200px;">
-      <button (click)="onGameChoice(game)">Jouer</button>
+      <h3>BlackJack</h3>
+      <p>Decsription du BlackJack</p>
+      <img src="assets/blackjack.png" alt="image blackjack" style="width: 200px; height: 200px;">
+      <button (click)="onGameChoice('Blackjack')">Jouer</button>
     </div>
-  </div>
-
-  <div *ngIf="games.length === 0">
-    <p>Aucun jeu disponible</p>
+    <div class="gameBlock">
+      <h3>Roulette</h3>
+      <p>Description de la roulette</p>
+      <img src="assets/roulette.png" alt="image roulette" style="width: 200px; height: 200px;">
+      <button (click)="onGameChoice('Roulette')">Jouer</button>
+    </div>
   </div>
 </div>

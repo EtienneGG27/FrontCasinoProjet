@@ -20,7 +20,7 @@
     <div class="countHand">{{countHandPoint(playerHand)}}</div>
   </div>
   <div class="btnaddCard">
-    <button  class="btn" id="addCard" (click)="addCard(playerHand)">Ajouter une carte</button>
+    <button  class="btn" id="addCard" (click)="cancelBet()">Ajouter une carte</button>
   </div>
   <div class="buttons">
     <button class="btn" id="hit">Hit</button>
@@ -41,7 +41,7 @@
   </div>
   <div class="betConfirm"></div>
   <div class="betConfirmButtons">
-    <button class="btn" id="confirm" (click)="startGame()">Confirm</button>
+    <button class="btn" id="confirm" (click)="cancelBet()">Confirm</button>
     <button class="btn" id="cancel" (click)="cancelBet()">Cancel</button>
   </div>
 </div>

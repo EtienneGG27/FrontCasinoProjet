@@ -2,7 +2,5 @@ import {CardModel} from './card.model';
 
 export class HandModel {
 
-  constructor(public idPlayer: number, public cards: CardModel[]) {}
-
-
+  constructor(public cards: CardModel[]) {}
 }
