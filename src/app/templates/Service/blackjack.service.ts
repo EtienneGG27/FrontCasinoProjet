@@ -16,8 +16,8 @@ export class BlackjackService {
     return this.http.post<GameModel>(this.blackjack + "/create", {playerId: idPlayer, betAmount: betAmout});
   }
 
-  getCard(gameId : number, betId : number) : Observable<GameModel>{
-    return this.http.post<GameModel>(this.blackjack + "/hit", {gameId: gameId, betId: betId});
+  hit(gameId : number) : Observable<GameModel>{
+    return this.http.post<GameModel>(this.blackjack + "/hit", {gameId: gameId});
   }
 
 

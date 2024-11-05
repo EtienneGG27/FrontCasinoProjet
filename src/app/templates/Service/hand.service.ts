@@ -3,6 +3,7 @@ import {CardModel} from '../Model/card.model';
 import {CARDS} from '../Constants/card.constants';
 import {HandModel} from '../Model/hand.model';
 import {HttpClient} from '@angular/common/http';
+import {CardService} from './card.service';
 
 @Injectable({
     providedIn: 'root'
@@ -10,9 +11,30 @@ import {HttpClient} from '@angular/common/http';
 )
 export class HandService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public cardSerice: CardService) {}
 
   private player = "http://localhost:8080/hand"
+
+  createHand(playerId: number) {
+    return this.http.post<HandModel>(this.player + "/create", {playerId: playerId});
+  }
+
+  strToHand(str: string[]): HandModel {
+
+    let hand = new HandModel([]);
+    for (let i = 0; i < str.length; i++) {
+      hand.cards.push(this.cardSerice.getCardDetails(str[i]));
+    }
+    return hand;
+  }
+
+
+
+
+
+
+
+
 
   loadHand(hand : HandModel, cardsCARDS : CardModel[]) {  // Correction du type de retour : CardModel[]
     hand.cards = this.getRandomCards(2, cardsCARDS);

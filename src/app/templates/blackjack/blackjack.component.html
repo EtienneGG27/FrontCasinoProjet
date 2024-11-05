@@ -1,4 +1,4 @@
-<div class="body">
+<div *ngIf="player" class="body">
   <div class="header">
     <h1>Blackjack</h1>
   </div>
@@ -12,18 +12,17 @@
   </div>
 
   <div class="dealerHand">
-    <app-hand [hand]="dealerHand"></app-hand>
-    <div class="countHand">{{countHandPoint(dealerHand)}}</div>
+    <app-hand [hand]="game.dealerHand"></app-hand>
+    <div class="countHand">{{game.dealerScore}}</div>
   </div>
   <div class="playerHand">
-    <app-hand [hand]="playerHand"></app-hand>
-    <div class="countHand">{{countHandPoint(playerHand)}}</div>
+    <app-hand [hand]="game.playerHand"></app-hand>
+    <div class="countHand">{{game.playerScore}}</div>
   </div>
   <div class="btnaddCard">
-    <button  class="btn" id="addCard" (click)="cancelBet()">Ajouter une carte</button>
+    <button  class="btn" id="addCard" (click)="hit()">Ajouter une carte</button>
   </div>
   <div class="buttons">
-    <button class="btn" id="hit">Hit</button>
     <button class="btn" id="stand">Stand</button>
     <button class="btn" id="double">Double</button>
     <button class="btn" id="split">Split</button>
@@ -41,9 +40,10 @@
   </div>
   <div class="betConfirm"></div>
   <div class="betConfirmButtons">
-    <button class="btn" id="confirm" (click)="cancelBet()">Confirm</button>
+    <button class="btn" id="confirm" (click)="create()">Confirm</button>
     <button class="btn" id="cancel" (click)="cancelBet()">Cancel</button>
   </div>
 </div>
+
 
 

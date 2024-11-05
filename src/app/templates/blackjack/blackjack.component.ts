@@ -2,16 +2,20 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {CardComponent} from '../card/card.component';
 import {HandComponent} from '../hand/hand.component';
 import {HandModel} from '../Model/hand.model';
-import {CARDS} from '../Constants/card.constants';
 import {HandService} from '../Service/hand.service';
 import {BlackjackService} from '../Service/blackjack.service';
+import {GameModel} from '../Model/game.model';
+import {PlayerModel} from '../Model/player.model';
+import {GameService} from '../Service/game.service';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-blackjack',
   standalone: true,
   imports: [
     CardComponent,
-    HandComponent
+    HandComponent,
+    CommonModule
   ],
   templateUrl: './blackjack.component.html',
   styleUrl: './blackjack.component.css'
@@ -20,20 +24,34 @@ import {BlackjackService} from '../Service/blackjack.service';
 export class BlackjackComponent implements OnInit {
 
 
-  player: any;
-  playerHand!: HandModel
-  dealerHand!: HandModel
+  player!: PlayerModel;
+  game!: GameModel;
 
   betAmount: number = 0;
 
 
-  constructor(private handService: HandService, private blackjackService: BlackjackService) {
+  constructor(private blackjackService: BlackjackService, private gameService : GameService) {
   }
 
   ngOnInit() {
     this.player = history.state.player;
-    this.playerHand = new HandModel([]);
-    this.dealerHand = new HandModel([]);
+    this.game = new GameModel(0, this.player.id, new HandModel([]), new HandModel([]), 0, 0, false, new Date(), new Date());
+  }
+
+  create() : void{
+    this.blackjackService.createGame(this.player.id, this.betAmount).subscribe((game: GameModel) => {
+      console.log(this.game);
+      this.game = this.gameService.createGameService(game);
+      console.log(this.game);
+    });
+    console.log(this.game);
+  }
+
+
+  hit(){
+    this.blackjackService.hit(this.game.gameId).subscribe((game : GameModel) => {
+      this.game = this.gameService.createGameService(game);
+    });
   }
 
 
@@ -51,10 +69,6 @@ export class BlackjackComponent implements OnInit {
     this.betAmount = 0;
   }
 
-
-  countHandPoint(hand: HandModel) {
-    return this.handService.countPointHand(hand);
-  }
 
 
 }
