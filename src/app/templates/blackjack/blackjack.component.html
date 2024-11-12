@@ -1,48 +1,58 @@
 <div *ngIf="player" class="body">
-  <div class="header">
-    <h1>Blackjack</h1>
-  </div>
-  <div class="balance">
-    <h1>Balance : {{player.token}}</h1>
-    <h1>Bet amount : {{betAmount}}</h1>
-  </div>
-  <div class="tokensDeck"></div>
-  <div class="cardDeck">
+  <div class="Play">
+      <div class="header">
+        <h1>Blackjack</h1>
+        <h1>{{player.name}}</h1>
+      </div>
+      <div class="balance">
+        <h1>Balance : {{player.token}}</h1>
+        <h1>Bet amount : {{betAmount}}</h1>
+      </div>
+      <div class="tokensDeck"></div>
+      <div class="cardDeck">
 
+      </div>
+
+      <div class="dealerHand">
+        <app-hand [hand]="game.dealerHand"></app-hand>
+        <div class="countHand">{{game.dealerScore}}</div>
+      </div>
+      <div class="playerHand">
+        <app-hand [hand]="game.playerHand"></app-hand>
+        <div class="countHand">{{game.playerScore}}</div>
+      </div>
+  </div>
+  <div class="PlayBtn">
+      <div class="GameOver" *ngIf="isGameOver">
+        <h1>La partie est terminé</h1>
+        <button class="btn" id="newGame" (click)="newGame()">Nouvelle partie</button>
+      </div>
+      <div class="btnaddCard">
+        <button class="btn" id="addCard" (click)="hit()" [disabled]="beforeCreate">Ajouter une carte</button>
+      </div>
+      <div class="buttons">
+        <button class="btn" id="stand" (click)="stand()" [disabled]="beforeCreate">Stand</button>
+        <button class="btn" id="double" (click)="double()" [disabled]="beforeCreate">Double</button>
+        <button class="btn" id="split" (click)="split()" [disabled]="beforeCreate">Split</button>
+        <button class="btn" id="surrender" (click)="surrender()" [disabled]="beforeCreate">Surrender</button>
+      </div>
+      <div class="result"></div>
+      <div class="bet"></div>
+      <div class="betInput"></div>
+      <div class="betButtons">
+        <button class="btn" id="bet5" (click)="bet(5)" [disabled]="afterCreate">5</button>
+        <button class="btn" id="bet10" (click)="bet(10)" [disabled]="afterCreate">10</button>
+        <button class="btn" id="bet25" (click)="bet(25)" [disabled]="afterCreate">25</button>
+        <button class="btn" id="bet50" (click)="bet(50)" [disabled]="afterCreate">50</button>
+        <button class="btn" id="bet100" (click)="bet(100)" [disabled]="afterCreate">100</button>
+      </div>
+      <div class="betConfirm"></div>
+      <div class="betConfirmButtons">
+        <button class="btn" id="confirm" (click)="create()" [disabled]="afterCreate">Confirm</button>
+        <button class="btn" id="cancel" (click)="cancelBet()">Cancel</button>
+      </div>
   </div>
 
-  <div class="dealerHand">
-    <app-hand [hand]="game.dealerHand"></app-hand>
-    <div class="countHand">{{game.dealerScore}}</div>
-  </div>
-  <div class="playerHand">
-    <app-hand [hand]="game.playerHand"></app-hand>
-    <div class="countHand">{{game.playerScore}}</div>
-  </div>
-  <div class="btnaddCard">
-    <button  class="btn" id="addCard" (click)="hit()">Ajouter une carte</button>
-  </div>
-  <div class="buttons">
-    <button class="btn" id="stand">Stand</button>
-    <button class="btn" id="double">Double</button>
-    <button class="btn" id="split">Split</button>
-    <button class="btn" id="surrender">Surrender</button>
-  </div>
-  <div class="result"></div>
-  <div class="bet"></div>
-  <div class="betInput"></div>
-  <div class="betButtons">
-    <button class="btn" id="bet5" (click)="bet(5)">5</button>
-    <button class="btn" id="bet10" (click)="bet(10)">10</button>
-    <button class="btn" id="bet25" (click)="bet(25)">25</button>
-    <button class="btn" id="bet50" (click)="bet(50)">50</button>
-    <button class="btn" id="bet100" (click)="bet(100)">100</button>
-  </div>
-  <div class="betConfirm"></div>
-  <div class="betConfirmButtons">
-    <button class="btn" id="confirm" (click)="create()">Confirm</button>
-    <button class="btn" id="cancel" (click)="cancelBet()">Cancel</button>
-  </div>
 </div>
 
 

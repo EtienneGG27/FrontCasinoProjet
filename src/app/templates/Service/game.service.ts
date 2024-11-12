@@ -12,7 +12,7 @@ export class GameService {
   constructor(public handService : HandService) {}
 
 
-  createGameService(game: GameModel) {
+  parseGameService(game: GameModel) {
     // Conversion de l'objet en chaîne JSON, puis parsing en objet
     let jsonGame = JSON.parse(JSON.stringify(game));
 
