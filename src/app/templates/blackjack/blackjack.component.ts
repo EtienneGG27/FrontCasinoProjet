@@ -50,13 +50,13 @@ export class BlackjackComponent implements OnInit {
 
 
   hit(){
-    this.blackjackService.hit(this.game.gameId).subscribe((game : GameModel) => {
+    this.blackjackService.hit(this.game).subscribe((game : GameModel) => {
       this.parseGame(game);
     });
   }
 
   stand() {
-    this.blackjackService.stand(this.game.gameId).subscribe((game : GameModel) => {
+    this.blackjackService.stand(this.game).subscribe((game : GameModel) => {
       this.parseGame(game)
     });
   }

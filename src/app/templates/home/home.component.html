@@ -1,22 +1,31 @@
-<div class="gamesChoice">
-  <div class="profile-info">
-    <h4>Tokens : {{player.token}}</h4>
-    <h4>Mon profil : {{player.name}}</h4>
+<body>
+  <div class="gamesChoice">
+    <div class="profile-info">
+      <h4 class="neon-text">🎲 Tokens : {{player.token}}</h4>
+      <h4 class="neon-text">👤 Mon profil : {{player.name}}</h4>
+    </div>
+
+    <div class="gamesBlock">
+      <div class="gameBlock">
+        <h3 class="neon-title">BlackJack</h3>
+        <p class="game-description">Vivez l'expérience du BlackJack et remportez gros !</p>
+        <img src="assets/blackjack.png" alt="image blackjack" class="game-image">
+        <button class="casino-button" (click)="onGameChoice('Blackjack')">Jouer</button>
+      </div>
+    </div>
+
   </div>
 
-  <h2>Choisissez un jeu</h2>
-  <div class="gamesBlock">
-    <div class="gameBlock">
-      <h3>BlackJack</h3>
-      <p>Decsription du BlackJack</p>
-      <img src="assets/blackjack.png" alt="image blackjack" style="width: 200px; height: 200px;">
-      <button (click)="onGameChoice('Blackjack')">Jouer</button>
-    </div>
-    <div class="gameBlock">
-      <h3>Roulette</h3>
-      <p>Description de la roulette</p>
-      <img src="assets/roulette.png" alt="image roulette" style="width: 200px; height: 200px;">
-      <button (click)="onGameChoice('Roulette')">Jouer</button>
-    </div>
+  <div class="player-stats">
+    <h4 class="neon-text">📊 Statistiques du Joueur</h4>
+    <ul>
+      <li>ID : {{ stats.id }}</li>
+      <li>Parties Jouées : {{ stats.games_played }}</li>
+      <li>Parties Gagnées : {{ stats.games_won }}</li>
+      <li>Parties Perdues : {{ stats.games_lost }}</li>
+      <li>Jetons Totaux : {{ stats.total_tokens }}</li>
+      <li>Mises Totales : {{ stats.total_bets }}</li>
+    </ul>
   </div>
-</div>
+
+</body>

@@ -16,12 +16,12 @@ export class BlackjackService {
     return this.http.post<GameModel>(this.blackjack + "/create", {playerId: idPlayer, betAmount: betAmout});
   }
 
-  hit(gameId : number) : Observable<GameModel>{
-    return this.http.post<GameModel>(this.blackjack + "/hit", {gameId: gameId});
+  hit(game : GameModel) : Observable<GameModel>{
+    return this.http.post<GameModel>(this.blackjack + "/hit", {gameId: game});
   }
 
-  stand(gameId : number) : Observable<GameModel>{
-    return this.http.post<GameModel>(this.blackjack + "/stand", {gameId: gameId});
+  stand(game : GameModel) : Observable<GameModel>{
+    return this.http.post<GameModel>(this.blackjack + "/stand", {game: game});
   }
 
   double(gameId : number) : Observable<GameModel>{
@@ -35,6 +35,8 @@ export class BlackjackService {
   split(gameId : number) : Observable<GameModel>{
     return this.http.post<GameModel>(this.blackjack + "/split", {gameId: gameId});
   }
+
+
 
 
 

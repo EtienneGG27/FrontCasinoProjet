@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {GameModel} from '../Model/game.model';
 import {NgForOf, NgIf} from '@angular/common';
 import {PlayerModel} from '../Model/player.model';
+import {StatsModel} from '../Model/stats.model';
 
 @Component({
   selector: 'app-home',
@@ -19,12 +20,14 @@ export class HomeComponent implements OnInit {
 
   games: GameModel[] = []
   player!: PlayerModel;
+  stats!: StatsModel;
 
   constructor(private router: Router) {}
 
   ngOnInit() {
     this.games = []
     this.player = history.state.player;
+    this.stats = new StatsModel(0, 0, 0, 0, 0, 0);
   }
 
   onGameChoice(nomGame: string) {

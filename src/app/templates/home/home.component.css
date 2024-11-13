@@ -1,85 +1,103 @@
-.gamesChoice {
-  position: relative;
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background-color: #f8f8f8;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 1200px; /* Assure une largeur adaptée */
-  margin: 0 auto;
+body {
+  background-color: #111; /* Fond sombre */
+  color: #fff;
+  font-family: 'Arial', sans-serif;
 }
 
-.gamesChoice h2 {
-  font-size: 2em;
-  color: #333;
-  margin-bottom: 20px;
+.gamesChoice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.profile-info {
   text-align: center;
+  margin-bottom: 20px;
+}
+
+.neon-text {
+  font-size: 20px;
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #f39c12, 0 0 20px #f39c12, 0 0 30px #e74c3c;
 }
 
 .gamesBlock {
   display: flex;
-  flex-direction: row; /* Force les éléments à s'aligner en ligne */
-  justify-content: space-between; /* Espacement entre les jeux */
-  gap: 20px; /* Espace entre chaque bloc */
-  flex-wrap: wrap; /* Permet d'enrouler si l'espace est trop petit */
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
 .gameBlock {
-  background-color: #fff;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(145deg, #333, #222);
+  padding: 20px;
+  border: 2px solid #f39c12;
+  border-radius: 15px;
   text-align: center;
-  width: 30%; /* Chaque jeu prendra 30% de la largeur du conteneur */
+  transition: transform 0.3s;
 }
 
-.gameBlock h3 {
-  font-size: 1.5em;
-  color: #333;
+.gameBlock:hover {
+  transform: scale(1.05);
+}
+
+.neon-title {
+  font-size: 24px;
+  color: #f39c12;
+  text-shadow: 0 0 5px #fff, 0 0 10px #f39c12, 0 0 20px #e74c3c, 0 0 30px #e74c3c;
   margin-bottom: 10px;
 }
 
-.gameBlock p {
-  font-size: 1em;
-  color: #666;
-  margin-bottom: 10px;
+.game-description {
+  color: #aaa;
+  margin-bottom: 15px;
 }
 
-.gameBlock img {
-  display: block;
-  margin: 0 auto 15px;
+.game-image {
+  width: 200px;
+  height: 200px;
   border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin-bottom: 10px; /* Espacement entre l'image et le bouton */
 }
 
-.gameBlock button {
-  background-color: #007bff;
-  color: white;
+.game-image:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #e74c3c, 0 0 30px #e74c3c;
+}
+
+.casino-button {
+  background-color: #e74c3c;
+  color: #fff;
+  font-size: 18px;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: box-shadow 0.3s;
+  margin-top: 10px; /* Espacement au-dessus du bouton */
 }
 
-.gameBlock button:hover {
-  background-color: #0056b3;
+.casino-button:hover {
+  box-shadow: 0 0 10px #f39c12, 0 0 20px #e74c3c;
 }
 
-/* Profil en haut à droite */
-.profile-info {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  text-align: right;
+.player-stats {
+  margin-top: 20px;
+  color: #fff;
 }
 
-.profile-info h4 {
-  font-size: 1.2em;
-  color: #333;
+.player-stats h4 {
+  color: #00ff00;
+  font-weight: bold;
+}
+
+.player-stats ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.player-stats li {
   margin: 5px 0;
-}
-
-.gamesChoice p {
-  color: #ff0000;
-  font-size: 1.1em;
 }
