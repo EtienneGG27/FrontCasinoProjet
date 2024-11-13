@@ -8,7 +8,7 @@ export class GameModel {
     public dealerHand: HandModel,
     public playerScore: number,
     public dealerScore: number,
-    public isGameOver: boolean,
+    public isGameOver: string,
     public startTime: Date,
     public endTime: Date,
     public nom?: string,

@@ -4,6 +4,8 @@ import {GameModel} from '../Model/game.model';
 import {NgForOf, NgIf} from '@angular/common';
 import {PlayerModel} from '../Model/player.model';
 import {StatsModel} from '../Model/stats.model';
+import {Observable} from 'rxjs';
+import {StatsService} from '../Service/stats.service';
 
 @Component({
   selector: 'app-home',
@@ -22,19 +24,24 @@ export class HomeComponent implements OnInit {
   player!: PlayerModel;
   stats!: StatsModel;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private statsService : StatsService) {}
 
   ngOnInit() {
     this.games = []
     this.player = history.state.player;
     this.stats = new StatsModel(0, 0, 0, 0, 0, 0);
+    this.findStats();
   }
 
   onGameChoice(nomGame: string) {
     if (nomGame === "Blackjack") {
       this.router.navigate(['/blackjack'],  { state: { player: this.player } });
     }
-    if (nomGame === "Roulette") {
-      this.router.navigate(['/roulette'], { state: { player: this.player } });}
+  }
+
+  findStats(){
+    this.statsService.findPerfomance(this.player.id).subscribe((stats: StatsModel) => {
+      this.stats = this.statsService.parseStatsService(stats);
+    });
   }
 }

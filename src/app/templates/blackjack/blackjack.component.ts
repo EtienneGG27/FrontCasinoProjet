@@ -30,6 +30,7 @@ export class BlackjackComponent implements OnInit {
   beforeCreate: boolean = true;
   afterCreate: boolean = false;
   isGameOver: boolean = false;
+  valuee!:any;
 
 
   constructor(private blackjackService: BlackjackService, private gameService : GameService) {
@@ -37,11 +38,12 @@ export class BlackjackComponent implements OnInit {
 
   ngOnInit() {
     this.player = history.state.player;
-    this.game = new GameModel(0, this.player.id, new HandModel([]), new HandModel([]), 0, 0, false, new Date(), new Date());
+    this.game = new GameModel(0, this.player.id, new HandModel([]), new HandModel([]), 0, 0, "", new Date(), new Date());
   }
 
   create() : void{
     this.blackjackService.createGame(this.player.id, this.betAmount).subscribe((game: GameModel) => {
+      this.valuee = game;
       this.game = this.gameService.parseGameService(game);
     });
     this.beforeCreate = false;
@@ -50,9 +52,11 @@ export class BlackjackComponent implements OnInit {
 
 
   hit(){
-    this.blackjackService.hit(this.game).subscribe((game : GameModel) => {
+    this.blackjackService.hit(this.valuee).subscribe((game : GameModel) => {
+      this.valuee = game;
       this.parseGame(game);
     });
+
   }
 
   stand() {
@@ -97,13 +101,13 @@ export class BlackjackComponent implements OnInit {
 
   parseGame(game : GameModel){
     this.game = this.gameService.parseGameService(game);
-    if (this.game.isGameOver){
+    if (this.game.isGameOver == "LOSE" || this.game.isGameOver == "DRAW") {
       this.isGameOver = true;
     }
   }
 
   newGame() {
-    this.game = new GameModel(0, this.player.id, new HandModel([]), new HandModel([]), 0, 0, false, new Date(), new Date());
+    this.game = new GameModel(0, this.player.id, new HandModel([]), new HandModel([]), 0, 0, "", new Date(), new Date());
     this.beforeCreate = true;
     this.afterCreate = false;
     this.isGameOver = false;
