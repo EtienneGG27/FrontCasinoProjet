@@ -7,6 +7,7 @@ import {GameModel} from '../Model/game.model';
 import {PlayerModel} from '../Model/player.model';
 import {GameService} from '../Service/game.service';
 import {CommonModule} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-blackjack',
@@ -33,12 +34,12 @@ export class BlackjackComponent implements OnInit {
   valuee!:any;
 
 
-  constructor(private blackjackService: BlackjackService, private gameService : GameService) {
+  constructor(private router: Router, private blackjackService: BlackjackService, private gameService : GameService) {
   }
 
   ngOnInit() {
     this.player = history.state.player;
-    this.game = new GameModel(0, this.player.id, new HandModel([]), new HandModel([]), 0, 0, "", new Date(), new Date());
+    this.game = new GameModel(0, this.player.id, new HandModel([]), new HandModel([]), 0, 0, "", new Date(), new Date(), 0);
   }
 
   create() : void{
@@ -56,32 +57,20 @@ export class BlackjackComponent implements OnInit {
       this.valuee = game;
       this.parseGame(game);
     });
-
   }
 
   stand() {
-    this.blackjackService.stand(this.game).subscribe((game : GameModel) => {
-      this.parseGame(game)
-    });
-  }
-
-  double() {
-    this.blackjackService.double(this.game.gameId).subscribe((game : GameModel) => {
-      this.parseGame(game)
-    });
-  }
-
-  split() {
-    this.blackjackService.split(this.game.gameId).subscribe((game : GameModel) => {
+    this.blackjackService.stand(this.valuee).subscribe((game : GameModel) => {
       this.parseGame(game)
     });
   }
 
   surrender() {
-    this.blackjackService.surrender(this.game.gameId).subscribe((game : GameModel) => {
+    this.blackjackService.surrender(this.valuee).subscribe((game : GameModel) => {
       this.parseGame(game)
     });
     this.isGameOver = true;
+    this.betAmount = 0;
   }
 
 
@@ -95,21 +84,22 @@ export class BlackjackComponent implements OnInit {
   }
 
   cancelBet() {
-    this.player.token += this.betAmount;
-    this.betAmount = 0;
+    this.router.navigate(['/homePage'],  { state: { player: this.player } });
   }
 
   parseGame(game : GameModel){
     this.game = this.gameService.parseGameService(game);
-    if (this.game.isGameOver == "LOSE" || this.game.isGameOver == "DRAW") {
+    this.player.token = this.game.tokenBalance;
+    if (this.game.isGameOver == "LOSE" || this.game.isGameOver == "DRAW" || this.game.isGameOver == "WIN") {
       this.isGameOver = true;
     }
   }
 
   newGame() {
-    this.game = new GameModel(0, this.player.id, new HandModel([]), new HandModel([]), 0, 0, "", new Date(), new Date());
+    this.game = new GameModel(0, this.player.id, new HandModel([]), new HandModel([]), 0, 0, "", new Date(), new Date(), 0);
     this.beforeCreate = true;
     this.afterCreate = false;
     this.isGameOver = false;
+    this.betAmount = 0;
   }
 }

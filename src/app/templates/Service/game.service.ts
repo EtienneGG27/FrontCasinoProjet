@@ -26,6 +26,7 @@ export class GameService {
       isGameOver: jsonGame.isGameOver,
       startTime: jsonGame.startTime,
       endTime: jsonGame.endTime,
+      tokenBalance: jsonGame.betAmount,
       nom: jsonGame.nom,
       description: jsonGame.description,
       image: jsonGame.image

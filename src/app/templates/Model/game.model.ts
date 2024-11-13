@@ -11,6 +11,7 @@ export class GameModel {
     public isGameOver: string,
     public startTime: Date,
     public endTime: Date,
+    public tokenBalance: number,
     public nom?: string,
     public description?: string,
     public image?: string

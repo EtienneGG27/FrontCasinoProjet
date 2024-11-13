@@ -24,7 +24,7 @@
   </div>
   <div class="PlayBtn">
       <div class="GameOver" *ngIf="isGameOver">
-        <h1>La partie est terminé</h1>
+        <h1>La partie est terminé, c'est la TAKI-{{game.isGameOver}}</h1>
         <button class="btn" id="newGame" (click)="newGame()">Nouvelle partie</button>
       </div>
       <div class="btnaddCard">
@@ -32,8 +32,6 @@
       </div>
       <div class="buttons">
         <button class="btn" id="stand" (click)="stand()" [disabled]="beforeCreate">Stand</button>
-        <button class="btn" id="double" (click)="double()" [disabled]="beforeCreate">Double</button>
-        <button class="btn" id="split" (click)="split()" [disabled]="beforeCreate">Split</button>
         <button class="btn" id="surrender" (click)="surrender()" [disabled]="beforeCreate">Surrender</button>
       </div>
       <div class="result"></div>
