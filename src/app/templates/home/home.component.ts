@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
 
   onGameChoice(nomGame: string) {
     if (nomGame === "Blackjack") {
+
       this.router.navigate(['/blackjack'],  { state: { player: this.player } });
     }
   }

@@ -15,7 +15,7 @@
 
       <div class="dealerHand">
         <app-hand [hand]="game.dealerHand"></app-hand>
-        <div class="countHand">{{game.dealerScore}}</div>
+        <div class="countHand" *ngIf="isGameOver">{{game.dealerScore}}</div>
       </div>
       <div class="playerHand">
         <app-hand [hand]="game.playerHand"></app-hand>
@@ -32,7 +32,7 @@
       </div>
       <div class="buttons">
         <button class="btn" id="stand" (click)="stand()" [disabled]="beforeCreate">Stand</button>
-        <button class="btn" id="surrender" (click)="surrender()" [disabled]="beforeCreate">Surrender</button>
+        <button class="btn" id="surrender" (click)="surrender()" [disabled]="beforeCreate">Abandonner</button>
       </div>
       <div class="result"></div>
       <div class="bet"></div>
@@ -46,11 +46,10 @@
       </div>
       <div class="betConfirm"></div>
       <div class="betConfirmButtons">
-        <button class="btn" id="confirm" (click)="create()" [disabled]="afterCreate">Confirm</button>
-        <button class="btn" id="cancel" (click)="cancelBet()">Cancel</button>
+        <button class="btn" id="confirm" (click)="create()" [disabled]="afterCreate">Jouer</button>
+        <button class="btn" id="cancel" (click)="backHome()">Home</button>
       </div>
   </div>
-
 </div>
 
 

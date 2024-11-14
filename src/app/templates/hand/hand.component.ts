@@ -33,6 +33,10 @@ export class HandComponent implements OnInit {
     this.hand.cards.push(new CardModel("0", 'BACK', 'assets/cards/BACK.png'), new CardModel("0", 'BACK', 'assets/cards/BACK.png'));
   }
 
+  returnCard(){
+
+  }
+
   initHand(){
     this.hand.cards.push(new CardModel("0", 'BACK', 'assets/cards/BACK.png'), new CardModel("0", 'BACK', 'assets/cards/BACK.png'));
   }

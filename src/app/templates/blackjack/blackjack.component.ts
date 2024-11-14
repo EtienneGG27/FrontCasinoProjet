@@ -8,6 +8,7 @@ import {PlayerModel} from '../Model/player.model';
 import {GameService} from '../Service/game.service';
 import {CommonModule} from '@angular/common';
 import {Router} from '@angular/router';
+import {CardModel} from '../Model/card.model';
 
 @Component({
   selector: 'app-blackjack',
@@ -46,6 +47,7 @@ export class BlackjackComponent implements OnInit {
     this.blackjackService.createGame(this.player.id, this.betAmount).subscribe((game: GameModel) => {
       this.valuee = game;
       this.game = this.gameService.parseGameService(game);
+      this.game.dealerHand.cards[0].imagePath = 'assets/cards/BACK.png';
     });
     this.beforeCreate = false;
     this.afterCreate = true;
@@ -56,6 +58,7 @@ export class BlackjackComponent implements OnInit {
     this.blackjackService.hit(this.valuee).subscribe((game : GameModel) => {
       this.valuee = game;
       this.parseGame(game);
+      this.game.dealerHand.cards[0].imagePath = 'assets/cards/BACK.png';
     });
   }
 
@@ -68,6 +71,7 @@ export class BlackjackComponent implements OnInit {
   surrender() {
     this.blackjackService.surrender(this.valuee).subscribe((game : GameModel) => {
       this.parseGame(game)
+      this.game.isGameOver = "LOSE";
     });
     this.isGameOver = true;
     this.betAmount = 0;
@@ -83,7 +87,7 @@ export class BlackjackComponent implements OnInit {
     }
   }
 
-  cancelBet() {
+  backHome() {
     this.router.navigate(['/homePage'],  { state: { player: this.player } });
   }
 
@@ -96,7 +100,7 @@ export class BlackjackComponent implements OnInit {
   }
 
   newGame() {
-    this.game = new GameModel(0, this.player.id, new HandModel([]), new HandModel([]), 0, 0, "", new Date(), new Date(), 0);
+    this.game = new GameModel(0, this.player.id, new HandModel([new CardModel("0", 'BACK', 'assets/cards/BACK.png'), new CardModel("0", 'BACK', 'assets/cards/BACK.png')]), new HandModel([new CardModel("0", 'BACK', 'assets/cards/BACK.png'), new CardModel("0", 'BACK', 'assets/cards/BACK.png')]), 0, 0, "", new Date(), new Date(), 0);
     this.beforeCreate = true;
     this.afterCreate = false;
     this.isGameOver = false;
