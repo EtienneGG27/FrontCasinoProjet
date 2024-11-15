@@ -28,8 +28,8 @@ export class BlackjackService {
     return this.http.post<GameModel>(this.blackjack + "/double", {gameId: gameId});
   }
 
-  surrender(gameId : number) : Observable<GameModel>{
-    return this.http.post<GameModel>(this.blackjack + "/surrender", {gameId: gameId});
+  surrender(game : number) : Observable<GameModel>{
+    return this.http.post<GameModel>(this.blackjack + "/surrender", {game: game});
   }
 
   split(gameId : number) : Observable<GameModel>{
