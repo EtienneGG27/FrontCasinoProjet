@@ -1,6 +1,5 @@
 body {
-  background: darkgreen url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0');
-  background-size: cover;
+  background: url('../../../../public/assets/connexion.jpg') center/cover no-repeat, darkgreen;
   font-family: 'Roboto', sans-serif;
   color: darkgreen;
   display: flex;

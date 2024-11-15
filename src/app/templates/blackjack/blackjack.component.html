@@ -19,7 +19,7 @@
       </div>
       <div class="playerHand">
         <app-hand [hand]="game.playerHand"></app-hand>
-        <div class="countHand">{{game.playerScore}}</div>
+        <div class="countHand" style="color: white">{{game.playerScore}}</div>
       </div>
   </div>
   <div class="PlayBtn">
@@ -31,8 +31,8 @@
         <button class="btn" id="addCard" (click)="hit()" [disabled]="beforeCreate">Ajouter une carte</button>
       </div>
       <div class="buttons">
-        <button class="btn" id="stand" (click)="stand()" [disabled]="beforeCreate">Stand</button>
-        <button class="btn" id="surrender" (click)="surrender()" [disabled]="beforeCreate">Abandonner</button>
+        <button class="btn-stand" id="stand" (click)="stand()" [disabled]="beforeCreate">Stand</button>
+        <button class="btn-surrender" id="surrender" (click)="surrender()" [disabled]="beforeCreate">Abandonner</button>
       </div>
       <div class="result"></div>
       <div class="bet"></div>
@@ -46,8 +46,8 @@
       </div>
       <div class="betConfirm"></div>
       <div class="betConfirmButtons">
-        <button class="btn" id="confirm" (click)="create()" [disabled]="afterCreate">Jouer</button>
-        <button class="btn" id="cancel" (click)="backHome()">Home</button>
+        <button class="btn-jouer" id="confirm" (click)="create()" [disabled]="afterCreate">Jouer</button>
+        <button class="btn-home" id="cancel" (click)="backHome()">Home</button>
       </div>
   </div>
 </div>

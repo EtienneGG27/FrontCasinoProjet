@@ -1,299 +1,350 @@
-
-
 .body {
-  background-color: darkgreen;
+  background: url('../../../../public/assets/tapis.avif') center/cover no-repeat, darkgreen;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  width: 100%;
+  border-radius: 0; /* Suppression des bordures arrondies si non nécessaires */
+  box-shadow: none; /* Supprime l'ombre si l'objectif est de couvrir toute la page */
+  width: 100vw; /* 100% de la largeur de la fenêtre */
+  height: 100vh; /* 100% de la hauteur de la fenêtre */
+  margin: 0; /* Supprime les marges */
   text-align: center;
-}
-.PlayBtn, .Play{
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
+  position: fixed; /* Fixe l'élément pour qu'il reste en place même lors du défilement */
+  overflow: hidden; /* Empêche tout débordement visuel */
 }
 
+
+/* Table de jeu */
+.body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 10px solid #8B4513; /* Bordure bois */
+  border-radius: 30px;
+  pointer-events: none;
+}
 
 /* En-tête */
-.header {
-  text-align: center;
-  margin-bottom: 20px;
+.header h1 {
+  font-size: 3em;
+  color: #FFD700; /* Couleur dorée */
+  text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700;
 }
 
-.header h1 {
-  font-size: 2.5em;
-  color: #e74c3c;
-  background-color: #000; /* Fond noir */
-  padding: 10px 20px;
-  border-radius: 50px; /* Bordures arrondies pour créer un ovale */
+/* Main du joueur et du dealer */
+.playerHand, .dealerHand {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid #FFD700;
+  box-shadow: inset 0 0 10px rgba(255, 215, 0, 0.5);
+  border-radius: 10px;
+  width: 400px;
+  margin: 0 auto; /* Centre horizontalement */
+  text-align: center; /* Centre le contenu texte s'il y en a */
+}
+
+
+.dealerHand {
+  background: linear-gradient(145deg, #8B0000, #A52A2A); /* Rouge dégradé */
+}
+
+/* Cartes stylisées */
+.card {
   display: inline-block;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Ombre pour un effet de profondeur */
+  width: 80px;
+  height: 120px;
+  background: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+
+}
+
+.card:hover {
+  transform: rotate(10deg) scale(1.1);
+}
+
+/* Animation de distribution des cartes */
+@keyframes dealCard {
+  from {
+    transform: translateX(-100px) translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+}
+
+.card.dealing {
+  animation: dealCard 0.5s ease-out;
+}
+
+/* Boutons avec effets de casino */
+.btnaddCard .btn, .betButtons .btn {
+  background: radial-gradient(circle, #FFD700, #B8860B);
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+.btnaddCard .btn:hover, .betButtons .btn:hover {
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 10px #FFD700;
 }
 
 /* Balance */
-.balance {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
 .balance h1 {
-  font-size: 1.5em;
-  color: #f39c12;
-  background-color: #333; /* Fond sombre pour ressembler à un coffre */
-  padding: 10px 20px;
-  border-radius: 20px; /* Bordures arrondies pour un effet de coffre */
-  display: inline-block;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Ombre pour un effet de profondeur */
-  border: 2px solid #f39c12; /* Bordure dorée */
-  position: relative;
-}
-
-.balance h1::before,
-.balance h1::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 10px;
-  height: 10px;
-  background-color: #f39c12; /* Couleur dorée pour les "fermetures" du coffre */
-  border-radius: 50%;
-}
-
-.balance h1::before {
-  left: -20px;
-}
-
-.balance h1::after {
-  right: -20px;
-}
-
-
-
-/* Decks */
-.tokensDeck, .cardDeck {
-  margin-bottom: 20px;
-}
-
-/* Mains de jeu */
-.playerHand, .dealerHand {
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 400px;
-  margin: 0 auto;
-
-}
-
-.playerHand {
-  background-color: #34495e; /* Couleur de fond pour la main du joueur */
-  border: 2px solid black; /* Bordure pour la main du joueur */
-}
-
-.dealerHand {
-  background-color: #f39c12; /* Couleur de fond pour la main du dealer */
-  border: 2px solid black; /* Bordure pour la main du dealer */
-  position: relative;
-}
-
-.dealerHand::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 20px;
-  background-color: black; /* Couleur de la "LED" */
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Ombre pour un effet de profondeur */
-  animation: blink 1s infinite; /* Animation de clignotement */
-}
-
-@keyframes blink {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-/* Compte total de la main du joueur */
-.countHand {
-  font-size: 1.5em;
-  color: #ecf0f1; /* Couleur du texte */
-  margin: 0;
-  background-color: #2c3e50; /* Couleur de fond pour le compte total */
-  padding: 5px 10px;
-  border-radius: 5px;
-  display: inline-block;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombre pour un effet de profondeur */
-}
-
-.playerHand p, .dealerHand p {
-  font-size: 1.2em;
-  color: #ecf0f1; /* Couleur du texte */
-  margin: 0;
-}
-
-.dealerHand p {
-  font-family: 'Courier New', Courier, monospace; /* Police de type machine à écrire pour l'effet ordinateur */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Ombre pour un effet de profondeur */
-}
-
-
-
-
-
-/* Boutons */
-/* Bouton Ajouter une carte */
-.btnaddCard {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.btnaddCard .btn {
-  background: linear-gradient(145deg, #2980b9, #6dd5fa); /* Dégradé pour un effet plus joli */
-  color: #ecf0f1;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  font-size: 1em;
+  font-family: 'Cinzel', serif;
   font-weight: bold;
+}
+
+/* Amélioration pour les LED du dealer */
+.dealerHand::before {
+  background: radial-gradient(circle, red, darkred);
+  animation: blink 1.5s infinite;
+
+}
+
+/* Styles communs aux boutons */
+.btn-jouer, .btn-home {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #fff; /* Couleur blanche pour le texte */
+  border: none;
+  border-radius: 50px; /* Bord arrondi pour un style élégant */
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
 }
 
-.btnaddCard .btn:hover {
+/* Effet brillant */
+.btn-jouer::before, .btn-home::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -75%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+.btn-jouer:hover::before, .btn-home:hover::before {
+  left: 100%;
+  opacity: 1;
+}
+
+/* Bouton "Jouer" */
+.btn-jouer {
+  background: linear-gradient(145deg, #28a745, #218838); /* Dégradé vert */
+  box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+}
+
+.btn-jouer:hover {
+  background: linear-gradient(145deg, #218838, #28a745);
   transform: scale(1.05);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-  background-color: #3498db;
+  box-shadow: 0 8px 20px rgba(40, 167, 69, 0.6);
 }
 
-.btnaddCard .btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s;
+/* Bouton "Home" */
+.btn-home {
+  background: linear-gradient(145deg, #007bff, #0056b3); /* Dégradé bleu */
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
 }
 
-.btnaddCard .btn:hover::before {
-  transform: scaleX(1);
+.btn-home:hover {
+  background: linear-gradient(145deg, #0056b3, #007bff);
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.6);
 }
 
-.btnaddCard .btn::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s;
+/* Désactivation du bouton */
+.btn-jouer[disabled], .btn-jouer[disabled]:hover {
+  background: linear-gradient(145deg, #6c757d, #5a6268); /* Gris désactivé */
+  color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
 }
 
-.btnaddCard .btn:hover::after {
-  transform: scaleX(1);
-}
-
-.buttons, .betConfirmButtons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.btn {
-  background: linear-gradient(145deg, #2980b9, #6dd5fa); /* Dégradé pour un effet plus joli */
-  color: #ecf0f1;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  font-size: 1em;
+/* Styles communs aux boutons */
+.btn-stand, .btn-surrender {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 1.2em;
   font-weight: bold;
-}
-
-.btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-
-
-
-/* Styles pour les boutons de mise */
-.betButtons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.betButtons .btn {
-  border: 4px solid #000; /* Bordure ronde noire */
-  border-radius: 50%; /* Boutons ronds */
-  width: 60px;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5em;
+  color: #fff; /* Couleur blanche pour le texte */
+  border: none;
+  border-radius: 10px; /* Bord arrondi, moins prononcé */
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
-.betButtons .btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+/* Effet de bordures animées */
+.btn-stand::after, .btn-surrender::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(255, 255, 255, 0.5); /* Bordure blanche transparente */
+  border-radius: inherit;
+  z-index: -1;
+  transition: all 0.5s ease;
+  transform: scale(1.2);
+  opacity: 0;
 }
 
-/* Couleurs spécifiques pour chaque bouton */
-#bet5 {
-  background-color: #ffd700; /* Doré */
+.btn-stand:hover::after, .btn-surrender:hover::after {
+  transform: scale(1);
+  opacity: 1;
 }
 
-#bet10 {
-  background-color: #ff4500; /* Orange */
+/* Bouton "Stand" */
+.btn-stand {
+  background: linear-gradient(145deg, #ff4500, #e63900); /* Dégradé orange vif */
+  box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
 }
 
-#bet25 {
-  background-color: #ff69b4; /* Rose */
+.btn-stand:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 69, 0, 0.6);
+  background: linear-gradient(145deg, #e63900, #ff4500); /* Inverse le dégradé */
 }
 
-#bet50 {
-  background-color: #1e90ff; /* Bleu */
+/* Bouton "Surrender" */
+.btn-surrender {
+  background: linear-gradient(145deg, #800000, #b22222); /* Dégradé rouge sombre */
+  box-shadow: 0 5px 15px rgba(128, 0, 0, 0.4);
 }
 
-#bet100 {
-  background-color: #32cd32; /* Vert */
+.btn-surrender:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(128, 0, 0, 0.6);
+  background: linear-gradient(145deg, #b22222, #800000); /* Inverse le dégradé */
 }
 
+/* Désactivation des boutons */
+.btn-stand[disabled], .btn-surrender[disabled] {
+  background: linear-gradient(145deg, #6c757d, #5a6268); /* Gris désactivé */
+  color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
 
+/* Animation d'onde lumineuse */
+.btn-stand::before, .btn-surrender::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.4s, transform 0.4s;
+}
 
+.btn-stand:hover::before, .btn-surrender:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.GameOver {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8); /* Fond sombre semi-transparent */
+  border: 3px solid #ff4500; /* Bordure orange vif pour attirer l'attention */
+  border-radius: 20px; /* Coins arrondis pour un look moderne */
+  padding: 30px;
+  width: 80%;
+  max-width: 600px;
+  margin: 50px auto; /* Centré horizontalement et légèrement décalé verticalement */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  animation: pulse 1s infinite; /* Animation d'impulsion pour un effet dramatique */
+}
+
+/* Animation d'impulsion */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 10px 20px rgba(255, 69, 0, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(255, 69, 0, 0.6);
+  }
+}
+
+.GameOver h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #FFD700; /* Couleur dorée pour souligner la gravité du moment */
+  text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FF4500; /* Effet lumineux dramatique */
+  margin-bottom: 20px;
+  animation: flicker 2s infinite; /* Animation pour donner un effet de scintillement au texte */
+}
+
+/* Animation scintillante pour le texte */
+@keyframes flicker {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FF4500;
+  }
+  50% {
+    opacity: 0.8;
+    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 15px #FF4500;
+  }
+}
+
+.GameOver .btn {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #fff; /* Couleur blanche pour le texte */
+  background: linear-gradient(145deg, #28a745, #218838); /* Dégradé vert pour un appel à l'action clair */
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.GameOver .btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(40, 167, 69, 0.6);
+  background: linear-gradient(145deg, #218838, #28a745);
+}
+
+.GameOver .btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
 

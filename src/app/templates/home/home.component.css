@@ -1,7 +1,9 @@
 body {
-  background-color: #111; /* Fond sombre */
+  background: url('../../../../public/assets/home.avif') center/cover no-repeat, darkgreen;
   color: #fff;
   font-family: 'Arial', sans-serif;
+  width: 100vw; /* 100% de la largeur de la fenêtre */
+  height: 100vh;
 }
 
 .gamesChoice {
@@ -84,20 +86,127 @@ body {
 }
 
 .player-stats {
-  margin-top: 20px;
-  color: #fff;
+  background: rgba(0, 0, 0, 0.8); /* Fond sombre semi-transparent */
+  border: 3px solid #FFD700; /* Bordure dorée */
+  border-radius: 15px; /* Coins arrondis */
+  padding: 20px 30px;
+  width: 80%;
+  max-width: 500px;
+  margin: 20px auto; /* Centré horizontalement */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Ombre portée */
+  text-align: left;
+  animation: fadeIn 1s ease-out; /* Animation d'apparition */
+  color: #FFF; /* Texte blanc pour le contraste */
 }
 
+/* Animation d'apparition */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Titre */
 .player-stats h4 {
-  color: #00ff00;
+  font-size: 1.8em;
   font-weight: bold;
+  margin-bottom: 20px;
+  color: #00FFFF; /* Couleur néon cyan */
+  text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 20px #00FFFF; /* Effet lumineux */
+  text-align: center;
 }
 
+/* Liste des statistiques */
 .player-stats ul {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .player-stats li {
-  margin: 5px 0;
+  font-size: 1.2em;
+  margin: 10px 0;
+  color: #FFF; /* Texte blanc */
+  background: linear-gradient(145deg, #333, #444); /* Fond légèrement texturé */
+  padding: 10px 15px;
+  border-radius: 10px; /* Coins arrondis */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Ombre pour chaque élément */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet de survol sur les statistiques */
+.player-stats li:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 10px rgba(255, 255, 255, 0.2), 0 0 10px #FFD700; /* Ajout d'une lueur dorée */
+}
+
+/* Emoji 📊 dans le titre */
+.player-stats h4::before {
+  content: '📊 ';
+  font-size: 1.5em;
+  vertical-align: middle;
+}
+
+.gamesChoice {
+  background: rgba(0, 0, 0, 0.85); /* Fond sombre semi-transparent */
+  border: 3px solid #FFD700; /* Bordure dorée pour un effet premium */
+  border-radius: 15px; /* Coins arrondis */
+  padding: 20px 30px;
+  width: 80%;
+  max-width: 500px;
+  margin: 20px auto; /* Centré horizontalement */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Ombre portée */
+  text-align: center; /* Contenu centré */
+  color: #FFF; /* Texte blanc pour le contraste */
+  animation: fadeIn 1s ease-out; /* Animation d'apparition */
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section profil */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espacement entre les lignes */
+}
+
+/* Titre */
+.profile-info h4 {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #00FFFF; /* Couleur néon cyan */
+  text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 20px #00FFFF; /* Effet lumineux */
+  background: linear-gradient(145deg, #222, #333); /* Fond légèrement texturé */
+  padding: 10px;
+  border-radius: 10px; /* Coins arrondis */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Ombre pour chaque section */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet de survol */
+.profile-info h4:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 255, 255, 0.5), 0 0 15px #00FFFF; /* Lueur cyan dynamique */
+}
+
+/* Emoji 🎲 et 👤 dans le texte */
+.profile-info h4::before {
+  margin-right: 10px;
+  font-size: 1.5em;
+  vertical-align: middle;
 }
