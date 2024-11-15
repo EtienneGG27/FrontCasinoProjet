@@ -1,11 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;  /* Empêche le défilement horizontal */
+  margin: 0; /* Assurez-vous qu'il n'y a pas de marge par défaut */
+  padding: 0; /* Assurez-vous qu'il n'y a pas de padding par défaut */
+}
+
+
 body {
   background: url('../../../../public/assets/home.avif') center/cover no-repeat, darkgreen;
   color: #fff;
   font-family: 'Arial', sans-serif;
-  width: 100vw; /* 100% de la largeur de la fenêtre */
-  height: 100vh;
+  min-height: 100vh; /* Ensure body covers full viewport height */
+  display: flex;
+  flex-direction: column;
+  margin: 0;
 }
 
+/* Header */
+header {
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5em;
+}
+
+header nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+header nav ul li {
+  font-size: 1.2em;
+}
+
+header nav ul li:last-child {
+  margin-left: auto;
+}
+
+header nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+  color: #f39c12;
+}
+
+/* Main content area */
+main {
+  flex: 1; /* Prendre tout l'espace disponible entre le header et le footer */
+  padding: 20px;
+}
+
+/* Footer */
+footer {
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 10px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  bottom: 0;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Exemple de jeux */
 .gamesChoice {
   display: flex;
   flex-direction: column;
@@ -160,53 +242,6 @@ body {
   width: 80%;
   max-width: 500px;
   margin: 20px auto; /* Centré horizontalement */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Ombre portée */
-  text-align: center; /* Contenu centré */
-  color: #FFF; /* Texte blanc pour le contraste */
-  animation: fadeIn 1s ease-out; /* Animation d'apparition */
-}
-
-/* Animation d'apparition */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Section profil */
-.profile-info {
-  display: flex;
-  flex-direction: column;
-  gap: 15px; /* Espacement entre les lignes */
-}
-
-/* Titre */
-.profile-info h4 {
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #00FFFF; /* Couleur néon cyan */
-  text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 20px #00FFFF; /* Effet lumineux */
-  background: linear-gradient(145deg, #222, #333); /* Fond légèrement texturé */
-  padding: 10px;
-  border-radius: 10px; /* Coins arrondis */
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Ombre pour chaque section */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Effet de survol */
-.profile-info h4:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 15px rgba(0, 255, 255, 0.5), 0 0 15px #00FFFF; /* Lueur cyan dynamique */
-}
-
-/* Emoji 🎲 et 👤 dans le texte */
-.profile-info h4::before {
-  margin-right: 10px;
-  font-size: 1.5em;
-  vertical-align: middle;
+  color: #FFF;
+  text-align: center;
 }
