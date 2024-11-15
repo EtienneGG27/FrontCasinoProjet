@@ -29,10 +29,10 @@
       </div>
     <div *ngIf="!isGameOver">
       <div class="btnaddCard">
-        <button class="btn" id="addCard" (click)="hit()" [disabled]="beforeCreate">Ajouter une carte</button>
+        <button class="btn" id="addCard" (click)="hit()" [disabled]="beforeCreate">Tirer une carte</button>
       </div>
       <div class="buttons">
-        <button class="btn-stand" id="stand" (click)="stand()" [disabled]="beforeCreate">Stand</button>
+        <button class="btn-stand" id="stand" (click)="stand()" [disabled]="beforeCreate">S'arrêter</button>
         <button class="btn-surrender" id="surrender" (click)="surrender()" [disabled]="beforeCreate">Abandonner</button>
       </div>
       <div class="result"></div>

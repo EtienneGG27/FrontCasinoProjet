@@ -7,9 +7,9 @@
 
 html, body {
   height: 100%;
-  overflow-x: hidden;  /* Empêche le défilement horizontal */
-  margin: 0; /* Assurez-vous qu'il n'y a pas de marge par défaut */
-  padding: 0; /* Assurez-vous qu'il n'y a pas de padding par défaut */
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 
@@ -17,7 +17,7 @@ body {
   background: url('../../../../public/assets/home.avif') center/cover no-repeat, darkgreen;
   color: #fff;
   font-family: 'Arial', sans-serif;
-  min-height: 100vh; /* Ensure body covers full viewport height */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -27,7 +27,7 @@ body {
 header {
   background-color: #000;
   color: #fff;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
   width: 100%;
   box-sizing: border-box;
@@ -221,11 +221,6 @@ footer p {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Effet de survol sur les statistiques */
-.player-stats li:hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 10px rgba(255, 255, 255, 0.2), 0 0 10px #FFD700; /* Ajout d'une lueur dorée */
-}
 
 /* Emoji 📊 dans le titre */
 .player-stats h4::before {

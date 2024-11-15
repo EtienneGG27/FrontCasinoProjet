@@ -1,65 +1,78 @@
-.body {
-  background: url('../../../../public/assets/tapis.avif') center/cover no-repeat, darkgreen;
-  padding: 20px;
-  border-radius: 0; /* Suppression des bordures arrondies si non nécessaires */
-  box-shadow: none; /* Supprime l'ombre si l'objectif est de couvrir toute la page */
-  width: 100vw; /* 100% de la largeur de la fenêtre */
-  height: 100vh; /* 100% de la hauteur de la fenêtre */
-  margin: 0; /* Supprime les marges */
-  text-align: center;
-  position: fixed; /* Fixe l'élément pour qu'il reste en place même lors du défilement */
-  overflow: hidden; /* Empêche tout débordement visuel */
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.body {
+  background: url('../../../../public/assets/tapis.avif') center/cover no-repeat, darkgreen;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  text-align: center;
+  position: absolute;
+  overflow: auto;
+}
 
 /* Table de jeu */
 .body::before {
   content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  border: 10px solid #8B4513; /* Bordure bois */
-  border-radius: 30px;
+  border: 1vw solid #8B4513; /* Responsive border */
+  border-radius: 1vw; /* Responsive border radius */
   pointer-events: none;
 }
 
 /* En-tête */
 .header h1 {
-  font-size: 3em;
-  color: #FFD700; /* Couleur dorée */
-  text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700;
+  margin-top: 20px;
+  font-size: 3vw; /* Responsive font size */
+  color: #FFFFFF;
+  text-shadow: 0 0 1vw #FFD700, 0 0 2vw #FFD700, 0 0 3vw #FFD700;
 }
 
 /* Main du joueur et du dealer */
 .playerHand, .dealerHand {
   background: rgba(0, 0, 0, 0.8);
-  border: 2px solid #FFD700;
-  box-shadow: inset 0 0 10px rgba(255, 215, 0, 0.5);
-  border-radius: 10px;
-  width: 400px;
-  margin: 0 auto; /* Centre horizontalement */
-  text-align: center; /* Centre le contenu texte s'il y en a */
+  border: 0.2vw solid #FFD700;
+  box-shadow: inset 0 0 1vw rgba(255, 215, 0, 0.5);
+  border-radius: 1vw;
+  width: 80vw;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-
 .dealerHand {
-  background: linear-gradient(145deg, #8B0000, #A52A2A); /* Rouge dégradé */
+  background: linear-gradient(145deg, #8B0000, #A52A2A);
 }
 
 /* Cartes stylisées */
 .card {
   display: inline-block;
-  width: 80px;
-  height: 120px;
+  width: 10vw; /* Responsive width */
+  height: 15vw; /* Responsive height */
+  max-width: 80px;
+  max-height: 120px;
   background: white;
-  border: 2px solid black;
-  border-radius: 10px;
-  margin: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border: 0.2vw solid black;
+  border-radius: 1vw;
+  margin: 0.5vw;
+  box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease-in-out;
-
 }
 
 .card:hover {
@@ -69,7 +82,7 @@
 /* Animation de distribution des cartes */
 @keyframes dealCard {
   from {
-    transform: translateX(-100px) translateY(-50px);
+    transform: translateX(-10vw) translateY(-5vw);
     opacity: 0;
   }
   to {
@@ -92,28 +105,34 @@
   color: #000;
   transition: all 0.3s ease;
 }
+
 .betButtons {
-  display: flex; /* Active le mode flexbox */
-  justify-content: center; /* Aligne les boutons au centre */
-  gap: 15px; /* Ajoute un espace de 15px entre les boutons */
-  margin: 20px 0; /* Ajoute de l'espace autour du conteneur */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2vw 0;
+  position: absolute;
+  bottom: 1vw;
+  right: 20%;
+  transform: translateX(-50%);
 }
 
 .btn {
-  padding: 10px 20px;
+  padding: 1vw 2vw; /* Responsive padding */
   font-size: 1.2em;
-  border-radius: 10px;
+  border-radius: 1vw; /* Responsive border radius */
   cursor: pointer;
 }
 
 .btnaddCard .btn:hover, .betButtons .btn:hover {
-  transform: translateY(-3px) scale(1.1);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 10px #FFD700;
+  transform: translateY(-0.3vw) scale(1.1);
+  box-shadow: 0 0.6vw 1.2vw rgba(0, 0, 0, 0.4), 0 0 1vw #FFD700;
 }
 
 /* Balance */
 .balance h1 {
   font-family: 'Cinzel', serif;
+  color: #FFFFFF;
   font-weight: bold;
 }
 
@@ -121,23 +140,22 @@
 .dealerHand::before {
   background: radial-gradient(circle, red, darkred);
   animation: blink 1.5s infinite;
-
 }
 
 /* Styles communs aux boutons */
 .btn-jouer, .btn-home {
   display: inline-block;
-  padding: 15px 30px;
+  padding: 1.5vw 3vw; /* Responsive padding */
   font-size: 1.2em;
   font-weight: bold;
-  color: #fff; /* Couleur blanche pour le texte */
+  color: #fff;
   border: none;
-  border-radius: 50px; /* Bord arrondi pour un style élégant */
+  border-radius: 5vw; /* Responsive border radius */
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 2px;
   transition: all 0.3s ease-in-out;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -163,31 +181,37 @@
 
 /* Bouton "Jouer" */
 .btn-jouer {
-  background: linear-gradient(145deg, #28a745, #218838); /* Dégradé vert */
-  box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+  background: linear-gradient(145deg, #28a745, #218838);
+  box-shadow: 0 0.5vw 1.5vw rgba(40, 167, 69, 0.4);
+  position: absolute;
+  bottom: 1vw; /* Responsive bottom */
+  right: 4vw; /* Responsive right */
 }
 
 .btn-jouer:hover {
   background: linear-gradient(145deg, #218838, #28a745);
   transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(40, 167, 69, 0.6);
+  box-shadow: 0 0.8vw 2vw rgba(40, 167, 69, 0.6);
 }
 
 /* Bouton "Home" */
 .btn-home {
-  background: linear-gradient(145deg, #007bff, #0056b3); /* Dégradé bleu */
-  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+  position: absolute;
+  top: 1vw; /* Responsive top */
+  left: 1vw; /* Responsive left */
+  background: linear-gradient(145deg, #007bff, #0056b3);
+  box-shadow: 0 0.5vw 1.5vw rgba(0, 123, 255, 0.4);
 }
 
 .btn-home:hover {
   background: linear-gradient(145deg, #0056b3, #007bff);
   transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.6);
+  box-shadow: 0 0.8vw 2vw rgba(0, 123, 255, 0.6);
 }
 
 /* Désactivation du bouton */
 .btn-jouer[disabled], .btn-jouer[disabled]:hover {
-  background: linear-gradient(145deg, #6c757d, #5a6268); /* Gris désactivé */
+  background: linear-gradient(145deg, #6c757d, #5a6268);
   color: #ccc;
   cursor: not-allowed;
   box-shadow: none;
@@ -197,12 +221,12 @@
 /* Styles communs aux boutons */
 .btn-stand, .btn-surrender {
   display: inline-block;
-  padding: 15px 30px;
+  padding: 1.5vw 3vw; /* Responsive padding */
   font-size: 1.2em;
   font-weight: bold;
-  color: #fff; /* Couleur blanche pour le texte */
+  color: #fff;
   border: none;
-  border-radius: 10px; /* Bord arrondi, moins prononcé */
+  border-radius: 1vw; /* Responsive border radius */
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -219,7 +243,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  border: 3px solid rgba(255, 255, 255, 0.5); /* Bordure blanche transparente */
+  border: 0.3vw solid rgba(255, 255, 255, 0.5);
   border-radius: inherit;
   z-index: -1;
   transition: all 0.5s ease;
@@ -234,31 +258,31 @@
 
 /* Bouton "Stand" */
 .btn-stand {
-  background: linear-gradient(145deg, #ff4500, #e63900); /* Dégradé orange vif */
-  box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
+  background: linear-gradient(145deg, #ff4500, #e63900);
+  box-shadow: 0 0.5vw 1.5vw rgba(255, 69, 0, 0.4);
 }
 
 .btn-stand:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(255, 69, 0, 0.6);
-  background: linear-gradient(145deg, #e63900, #ff4500); /* Inverse le dégradé */
+  transform: translateY(-0.3vw) scale(1.05);
+  box-shadow: 0 0.8vw 2vw rgba(255, 69, 0, 0.6);
+  background: linear-gradient(145deg, #e63900, #ff4500);
 }
 
 /* Bouton "Surrender" */
 .btn-surrender {
-  background: linear-gradient(145deg, #800000, #b22222); /* Dégradé rouge sombre */
-  box-shadow: 0 5px 15px rgba(128, 0, 0, 0.4);
+  background: linear-gradient(145deg, #800000, #b22222);
+  box-shadow: 0 0.5vw 1.5vw rgba(128, 0, 0, 0.4);
 }
 
 .btn-surrender:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(128, 0, 0, 0.6);
-  background: linear-gradient(145deg, #b22222, #800000); /* Inverse le dégradé */
+  transform: translateY(-0.3vw) scale(1.05);
+  box-shadow: 0 0.8vw 2vw rgba(128, 0, 0, 0.6);
+  background: linear-gradient(145deg, #b22222, #800000);
 }
 
 /* Désactivation des boutons */
 .btn-stand[disabled], .btn-surrender[disabled] {
-  background: linear-gradient(145deg, #6c757d, #5a6268); /* Gris désactivé */
+  background: linear-gradient(145deg, #6c757d, #5a6268);
   color: #ccc;
   cursor: not-allowed;
   box-shadow: none;
@@ -284,80 +308,84 @@
   transform: scale(1);
 }
 
+/* Espacer les boutons de manière générale */
+.btnaddCard .btn, .betButtons .btn, .btn-jouer, .btn-home, .btn-stand, .btn-surrender {
+  margin: 1vw; /* Espacement entre les boutons */
+}
+
 .GameOver {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.8); /* Fond sombre semi-transparent */
-  border: 3px solid #ff4500; /* Bordure orange vif pour attirer l'attention */
-  border-radius: 20px; /* Coins arrondis pour un look moderne */
-  padding: 30px;
-  width: 80%;
+  background: rgba(0, 0, 0, 0.8);
+  border: 0.3vw solid #ff4500;
+  border-radius: 2vw;
+  padding: 3vw;
+  width: 60%;
   max-width: 600px;
-  margin: 50px auto; /* Centré horizontalement et légèrement décalé verticalement */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  margin: 5vw auto;
+  box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.5);
   text-align: center;
-  animation: pulse 1s infinite; /* Animation d'impulsion pour un effet dramatique */
+  animation: pulse 1s infinite;
 }
 
 /* Animation d'impulsion */
 @keyframes pulse {
   0%, 100% {
     transform: scale(1);
-    box-shadow: 0 10px 20px rgba(255, 69, 0, 0.4);
+    box-shadow: 0 1vw 2vw rgba(255, 69, 0, 0.4);
   }
   50% {
     transform: scale(1.05);
-    box-shadow: 0 15px 30px rgba(255, 69, 0, 0.6);
+    box-shadow: 0 1.5vw 3vw rgba(255, 69, 0, 0.6);
   }
 }
 
 .GameOver h1 {
-  font-size: 2.5em;
+  font-size: 2.5vw;
   font-weight: bold;
-  color: #FFD700; /* Couleur dorée pour souligner la gravité du moment */
-  text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FF4500; /* Effet lumineux dramatique */
-  margin-bottom: 20px;
-  animation: flicker 2s infinite; /* Animation pour donner un effet de scintillement au texte */
+  color: #FFD700;
+  text-shadow: 0 0 1vw #FFD700, 0 0 2vw #FFD700, 0 0 3vw #FF4500;
+  margin-bottom: 2vw;
+  animation: flicker 2s infinite;
 }
 
 /* Animation scintillante pour le texte */
 @keyframes flicker {
   0%, 100% {
     opacity: 1;
-    text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FF4500;
+    text-shadow: 0 0 1vw #FFD700, 0 0 2vw #FFD700, 0 0 3vw #FF4500;
   }
   50% {
     opacity: 0.8;
-    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 15px #FF4500;
+    text-shadow: 0 0 0.5vw #FFD700, 0 0 1vw #FFD700, 0 0 1.5vw #FF4500;
   }
 }
 
 .GameOver .btn {
   display: inline-block;
-  padding: 15px 30px;
+  padding: 1.5vw 3vw;
   font-size: 1.2em;
   font-weight: bold;
-  color: #fff; /* Couleur blanche pour le texte */
-  background: linear-gradient(145deg, #28a745, #218838); /* Dégradé vert pour un appel à l'action clair */
+  color: #fff;
+  background: linear-gradient(145deg, #28a745, #218838);
   border: none;
-  border-radius: 10px;
+  border-radius: 1vw;
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 2px;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0.5vw 1.5vw rgba(0, 0, 0, 0.3);
 }
 
 .GameOver .btn:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(40, 167, 69, 0.6);
+  transform: translateY(-0.3vw) scale(1.05);
+  box-shadow: 0 0.8vw 2vw rgba(40, 167, 69, 0.6);
   background: linear-gradient(145deg, #218838, #28a745);
 }
 
 .GameOver .btn:active {
   transform: scale(0.95);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.2);
 }
-
