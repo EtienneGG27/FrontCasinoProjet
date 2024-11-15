@@ -45,7 +45,8 @@ export class ConnexionComponent implements OnInit {
           this.isConnected = true;
           player = new PlayerModel(data.username, this.password, data.tokenBalance, data.playerId);
           this.router.navigate(['/homePage'], {state: {player: player}});
-        } else {
+        }
+        else {
           this.retry = true;
         }
       }

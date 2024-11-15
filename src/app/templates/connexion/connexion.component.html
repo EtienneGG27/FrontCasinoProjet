@@ -9,9 +9,9 @@
       <input type="text" id="username" name="username" [(ngModel)]="username">
       <label for="password">Mot de passe</label>
       <input type="password" id="password" name="password" [(ngModel)]="password">
-      <ng-container *ngIf="retry" >
-        <p>Identifiant ou mot de passe invalide</p>
-      </ng-container>
+      <div *ngIf="retry">
+        <h1>Identifiant ou mot de passe invalide</h1>
+      </div>
       <button type="submit">Connexion</button>
       <button type="button" (click)="showRegisterForm = true">Inscription</button>
     </form>
