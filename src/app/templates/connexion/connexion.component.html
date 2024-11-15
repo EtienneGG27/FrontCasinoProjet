@@ -1,31 +1,40 @@
 <body>
-
-
 <div class="body">
   <div *ngIf="!isConnected">
     <h2>Connexion</h2>
     <form *ngIf="!showRegisterForm" (submit)="onSubmit()">
-      <label for="username">username</label>
-      <input type="text" id="username" name="username" [(ngModel)]="username">
+      <label for="username">Nom d'utilisateur</label>
+      <input type="text" id="username" name="username" [(ngModel)]="username" required>
       <label for="password">Mot de passe</label>
-      <input type="password" id="password" name="password" [(ngModel)]="password">
-      <div *ngIf="retry">
-        <h1>Identifiant ou mot de passe invalide</h1>
+      <input type="password" id="password" name="password" [(ngModel)]="password" required>
+
+      <!-- Message d'erreur pour la connexion -->
+      <div *ngIf="retry" class="error-message">
+        <p>Identifiant ou mot de passe invalide. Veuillez réessayer.</p>
       </div>
+
       <button type="submit">Connexion</button>
       <button type="button" (click)="showRegisterForm = true">Inscription</button>
     </form>
+
     <form *ngIf="showRegisterForm" (submit)="onRegister()">
-      <label for="newUsername">Nouveau username</label>
-      <input type="text" id="newUsername" name="newUsername" [(ngModel)]="newUserName">
+      <label for="newUsername">Nouveau nom d'utilisateur</label>
+      <input type="text" id="newUsername" name="newUsername" [(ngModel)]="newUserName" required>
       <label for="newPassword">Nouveau mot de passe</label>
-      <input type="password" id="newPassword" name="newPassword" [(ngModel)]="newPassword">
+      <input type="password" id="newPassword" name="newPassword" [(ngModel)]="newPassword" required>
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" [(ngModel)]="newEmail">
+      <input type="email" id="email" name="email" [(ngModel)]="newEmail" required>
+
+      <!-- Message d'erreur pour l'inscription -->
+      <div *ngIf="registerError" class="error-message">
+        <p>{{ registerError }}</p>
+      </div>
+
       <button type="submit">S'inscrire</button>
       <button type="button" (click)="showRegisterForm = false">Annuler</button>
     </form>
   </div>
+
   <div *ngIf="isConnected">
     <h2>Bienvenue {{username}}</h2>
     <button (click)="onLogout()">Déconnexion</button>
