@@ -1,5 +1,8 @@
 # CasinoProjet
 
+Clonner le projet et vous rendre sur le Readme de Back-Casino pour profiter pleinement de notre jeu !
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.8.
 
 ## Development server
