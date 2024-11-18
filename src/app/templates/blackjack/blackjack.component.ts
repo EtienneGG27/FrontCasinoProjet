@@ -39,6 +39,7 @@ export class BlackjackComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.player = history.state.player;
     this.game = new GameModel(0, this.player.id, new HandModel([]), new HandModel([]), 0, 0, "", new Date(), new Date(), 0);
     this.betAmount = 0;
